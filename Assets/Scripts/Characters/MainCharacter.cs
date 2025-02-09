@@ -21,7 +21,7 @@ public class MainCharacter : BaseCharacter
     void Update()
     {
 		Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         mousePos.z = transform.position.z;
         transform.position = Vector3.Lerp(transform.position, mousePos, Speed * Time.deltaTime);
 	}
