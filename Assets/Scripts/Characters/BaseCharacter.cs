@@ -1,12 +1,13 @@
 using UnityEngine;
 using GlobalAccess;
 
-public class BaseCharacter : MonoBehaviour
+public abstract class BaseCharacter : MonoBehaviour
 {
     //Properties
     protected int MaxHealth;
 	protected int CurrentHealth;
 	protected int Damage;
+    protected float AttackSpeed;
 
 	//Booleans
 	protected bool bCanBeDamaged;
@@ -37,6 +38,4 @@ public class BaseCharacter : MonoBehaviour
     {
 
     }
-
-
 }
