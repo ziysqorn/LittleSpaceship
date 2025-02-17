@@ -1,13 +1,13 @@
 using UnityEngine;
 using GlobalAccess;
+using System.Collections.Generic;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
     //Properties
     protected int MaxHealth;
-	protected int CurrentHealth;
+    protected int CurrentHealth;
 	protected int Damage;
-    protected float AttackSpeed;
 
 	//Booleans
 	protected bool bCanBeDamaged;
@@ -15,13 +15,11 @@ public abstract class BaseCharacter : MonoBehaviour
 
     //Components
     protected BoxCollider2D boxCollider;
-    //protected Rigidbody2D rigidBody;
 
 	void Awake()
 	{
         //Component init
         boxCollider = GetComponent<BoxCollider2D>();
-        //rigidBody = GetComponent<Rigidbody2D>();
 
         //Properties init
 		bCanBeDamaged = true;

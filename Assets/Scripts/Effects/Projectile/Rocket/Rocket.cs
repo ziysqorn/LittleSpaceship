@@ -8,7 +8,7 @@ public class Rocket : Projectile
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
-        if (owner) rBody.linearVelocityY = owner.transform.up.y * 8.0f;
+        rBody.linearVelocity = transform.up * 8.0f;
     }
 
     // Update is called once per frame
