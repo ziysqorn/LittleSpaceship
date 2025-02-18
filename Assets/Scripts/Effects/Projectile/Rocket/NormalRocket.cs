@@ -1,9 +1,14 @@
 using UnityEngine;
 
-public class NormalRocket : MonoBehaviour
+public class NormalRocket : Rocket
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+	protected override void Awake()
+	{
+		base.Awake();
+        bulletDamage = 0;
+	}
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	protected override void Start()
     {
         
     }

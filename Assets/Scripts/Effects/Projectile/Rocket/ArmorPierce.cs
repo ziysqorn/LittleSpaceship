@@ -1,9 +1,14 @@
 using UnityEngine;
 
-public class ArmorPierce : MonoBehaviour
+public class ArmorPierce : Rocket
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+	protected override void Awake()
+	{
+		base.Awake();
+        bulletDamage = 1;
+	}
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	protected override void Start()
     {
         
     }

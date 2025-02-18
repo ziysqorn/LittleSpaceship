@@ -4,8 +4,12 @@ public class Projectile : MonoBehaviour
 {
     protected int bulletDamage;
     public GameObject owner;
+    protected virtual void Awake()
+    {
+
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
 
     }
