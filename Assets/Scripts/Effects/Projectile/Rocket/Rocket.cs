@@ -24,6 +24,12 @@ public class Rocket : Projectile
         
     }
 
+	private void OnEnable()
+	{
+        if(rBody == null) rBody = GetComponent<Rigidbody2D>();
+		rBody.linearVelocity = transform.up * flightSpeed;
+	}
+
 	private void OnBecameInvisible()
 	{
         PoolManager manager = PoolManager.poolManager;

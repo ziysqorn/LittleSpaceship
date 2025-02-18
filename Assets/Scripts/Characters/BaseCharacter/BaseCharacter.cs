@@ -15,11 +15,13 @@ public abstract class BaseCharacter : MonoBehaviour
 
     //Components
     protected BoxCollider2D boxCollider;
+    protected Rigidbody2D rBody;
 
-	void Awake()
+	protected virtual void Awake()
 	{
         //Component init
         boxCollider = GetComponent<BoxCollider2D>();
+        rBody = GetComponent<Rigidbody2D>();
 
         //Properties init
 		bCanBeDamaged = true;

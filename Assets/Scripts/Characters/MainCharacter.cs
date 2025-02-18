@@ -11,8 +11,9 @@ public class MainCharacter : BaseCharacter
 	protected float AttackSpeed;
     protected AttackComponent attackComp;
     [SerializeField] protected GameObject currentProjectile;
-	void Awake()
+	protected override void Awake()
     {
+        base.Awake();
         MaxHealth = GameConstants.Max_MainCharater_Health;
         CurrentHealth = MaxHealth;
         Damage = GameConstants.MainCharacter_Damage;
@@ -39,7 +40,7 @@ public class MainCharacter : BaseCharacter
     protected void Move(){
 		Vector3 mousePos = Input.mousePosition;
 		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-		mousePos.z = transform.position.z;
-		transform.position = Vector3.Lerp(transform.position, mousePos, Speed * Time.deltaTime);
-	}
+        mousePos.z = transform.position.z;
+        transform.position = Vector3.Lerp(transform.position, mousePos, Speed * Time.deltaTime);
+    }
 }

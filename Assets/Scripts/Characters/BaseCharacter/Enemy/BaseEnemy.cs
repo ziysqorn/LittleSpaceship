@@ -3,9 +3,9 @@ using UnityEngine;
 
 public abstract class BaseEnemy : BaseCharacter
 {
-	void Awake()
+	protected override void Awake()
 	{
-
+        base.Awake();
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
