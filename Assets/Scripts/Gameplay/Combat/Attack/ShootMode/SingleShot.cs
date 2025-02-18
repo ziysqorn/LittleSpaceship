@@ -7,9 +7,14 @@ public class SingleShot : IShootMode
 	{
 		if (controller && projectile)
 		{
-			GameObject bullet = GameObject.Instantiate(projectile, controller.transform.position, controller.transform.rotation);
-			Projectile proc = bullet.GetComponent<Projectile>();
-			if (proc) proc.owner = controller;
+			PoolManager manager = PoolManager.poolManager;
+			if (manager != null)
+			{
+				if (!manager.PoolExisted("Projectile")) manager.RegisterPool("Projectile", new ObjectPool(projectile));
+				GameObject bullet = manager.ActivateObjFromPool("Projectile", controller.transform.position, controller.transform.rotation);
+				Projectile proc = bullet.GetComponent<Projectile>();
+				if (proc) proc.owner = controller;
+			}
 		}
 	}
 }

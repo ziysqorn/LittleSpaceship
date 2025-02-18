@@ -23,4 +23,12 @@ public class Rocket : Projectile
     {
         
     }
+
+	private void OnBecameInvisible()
+	{
+        PoolManager manager = PoolManager.poolManager;
+        if (manager != null) { 
+            manager.RetrieveObjToPool("Projectile", gameObject);
+        }
+	}
 }

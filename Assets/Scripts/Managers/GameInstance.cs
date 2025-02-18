@@ -7,19 +7,15 @@ public class GameInstance : MonoBehaviour
 
 	void Awake()
 	{
-		if (gameObject != null)
+		if (instance == null)
 		{
-			if (instance == null)
-			{
-				instance = this;
-				DontDestroyOnLoad(gameObject);
-			}
-			else
-			{
-				Destroy(gameObject);
-			}
+			instance = this;
+			DontDestroyOnLoad(gameObject);
 		}
-		else throw new System.Exception("Game Object is null");
+		else
+		{
+			Destroy(gameObject);
+		}
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
