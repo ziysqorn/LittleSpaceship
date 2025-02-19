@@ -149,6 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc96f6ceffc4cbb4f8db554c275db854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sockets:
+  - {x: 0, y: 0.7, z: 0}
+  - {x: -0.4, y: 0, z: 0}
+  - {x: 0.4, y: 0, z: 0}
   currentProjectile: {fileID: 4455036843188917439, guid: 9b727be375e839f4f9a878bd82b39a88, type: 3}
 --- !u!95 &-1001971684253762129
 Animator:

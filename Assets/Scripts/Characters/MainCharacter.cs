@@ -20,7 +20,7 @@ public class MainCharacter : BaseCharacter
         Speed = GameConstants.MainCharacter_Speed;
         AttackSpeed = GameConstants.MainCharacter_AttackSpeed;
 
-        IShootMode shootMode = new SingleShot();
+        IShootMode shootMode = new TripleShot();
         IAttackStrategy attackStrategy = new NormalShooting(gameObject, shootMode, currentProjectile);
         attackComp = new AttackComponent(gameObject, attackStrategy);
     }

@@ -15,7 +15,7 @@ public class Rocket : Projectile
     {
         base.Start();
         rBody = GetComponent<Rigidbody2D>();
-        rBody.linearVelocity = transform.up * flightSpeed;
+        //rBody.linearVelocity = transform.up * flightSpeed;
     }
 
     // Update is called once per frame

@@ -11,9 +11,13 @@ public class SingleShot : IShootMode
 			if (manager != null)
 			{
 				if (!manager.PoolExisted("Projectile")) manager.RegisterPool("Projectile", new ObjectPool(projectile));
-				GameObject bullet = manager.ActivateObjFromPool("Projectile", controller.transform.position, controller.transform.rotation);
-				Projectile proc = bullet.GetComponent<Projectile>();
-				if (proc) proc.owner = controller;
+				BaseCharacter character = controller.GetComponent<BaseCharacter>();
+				if (character != null) {
+					Vector3 spawnPos = controller.transform.position + character.sockets[0];
+					GameObject bullet = manager.ActivateObjFromPool("Projectile", spawnPos, controller.transform.rotation);
+					Projectile proc = bullet.GetComponent<Projectile>();
+					if (proc) proc.owner = controller;
+				}
 			}
 		}
 	}

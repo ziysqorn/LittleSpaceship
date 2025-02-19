@@ -16,6 +16,7 @@ public abstract class BaseCharacter : MonoBehaviour
     //Components
     protected BoxCollider2D boxCollider;
     protected Rigidbody2D rBody;
+    [SerializeField] public Vector3[] sockets = new Vector3[3];
 
 	protected virtual void Awake()
 	{
