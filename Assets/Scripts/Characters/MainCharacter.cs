@@ -8,7 +8,6 @@ using Game.Interfaces;
 public class MainCharacter : BaseCharacter
 {
     protected float Speed;
-	protected float AttackSpeed;
     protected AttackComponent attackComp;
     [SerializeField] protected GameObject currentProjectile;
 	protected override void Awake()
@@ -18,17 +17,21 @@ public class MainCharacter : BaseCharacter
         CurrentHealth = MaxHealth;
         Damage = GameConstants.MainCharacter_Damage;
         Speed = GameConstants.MainCharacter_Speed;
-        AttackSpeed = GameConstants.MainCharacter_AttackSpeed;
 
-        IShootMode shootMode = new TripleShot();
-        IAttackStrategy attackStrategy = new NormalShooting(gameObject, shootMode, currentProjectile);
-        attackComp = new AttackComponent(gameObject, attackStrategy);
-    }
+        IShootMode shootMode = new DoubleBeam();
+        IAttackStrategy attackStrategy = new BeamShooting(gameObject, shootMode, currentProjectile);
+        attackComp = gameObject.GetComponent<AttackComponent>();
+        if (attackComp) { 
+            attackComp.SetAttackSpeed(GameConstants.MainCharacter_AttackSpeed);
+			attackComp.SetStrategy(attackStrategy);
+		} 
+
+	}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Cursor.visible = false;
-        StartCoroutine(attackComp?.AttackLoop(AttackSpeed));
+        attackComp?.Attack();
     }
 
     // Update is called once per frame
@@ -38,8 +41,8 @@ public class MainCharacter : BaseCharacter
 	}
 
     protected void Move(){
-		Vector3 mousePos = Input.mousePosition;
-		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         mousePos.z = transform.position.z;
         transform.position = Vector3.Lerp(transform.position, mousePos, Speed * Time.deltaTime);
     }

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 8138053710697688133}
   - component: {fileID: -1001971684253762129}
   - component: {fileID: 4960877763923906535}
+  - component: {fileID: -2057038301348926076}
   m_Layer: 3
   m_Name: Prefab_MainShip
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -5448727121883926364, guid: 96361acbfc48ceb40960d3be4a185776, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -153,7 +154,7 @@ MonoBehaviour:
   - {x: 0, y: 0.7, z: 0}
   - {x: -0.4, y: 0, z: 0}
   - {x: 0.4, y: 0, z: 0}
-  currentProjectile: {fileID: 4455036843188917439, guid: 9b727be375e839f4f9a878bd82b39a88, type: 3}
+  currentProjectile: {fileID: 4230232307610843581, guid: 08b8109369a404c4bb77ede8a8fd6b37, type: 3}
 --- !u!95 &-1001971684253762129
 Animator:
   serializedVersion: 7
@@ -203,3 +204,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-2057038301348926076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883472326942864594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2365b91039338df4a80f0cbb85168e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,16 +10,26 @@ public class DoubleShot : IShootMode
 			PoolManager manager = PoolManager.poolManager;
 			if (manager != null)
 			{
-				if (!manager.PoolExisted("Projectile")) manager.RegisterPool("Projectile", new ObjectPool(projectile));
-				BaseCharacter character = controller.GetComponent<BaseCharacter>();
-				if (character != null)
+				Projectile proc = projectile.GetComponent<Projectile>();
+				if (proc)
 				{
-					for(int i = character.sockets.Length - 1; i > 0; --i)
+					INameableEffect nameable = proc as INameableEffect;
+					if (nameable != null) nameable.SetProcName();
+					if (proc.projectileName != "")
 					{
-						Vector3 spawnPos = controller.transform.position + character.sockets[i];
-						GameObject bullet = manager.ActivateObjFromPool("Projectile", spawnPos, controller.transform.rotation);
-						Projectile proc = bullet.GetComponent<Projectile>();
-						if (proc) proc.owner = controller;
+						string procName = proc.projectileName;
+						if (!manager.PoolExisted(procName)) manager.RegisterPool(procName, new ObjectPool(projectile));
+						BaseCharacter character = controller.GetComponent<BaseCharacter>();
+						if (character != null)
+						{
+							for (int i = character.sockets.Length - 1; i > 0; --i)
+							{
+								Vector3 spawnPos = controller.transform.position + character.sockets[i];
+								GameObject bullet = manager.ActivateObjFromPool(procName, spawnPos, controller.transform.rotation);
+								Projectile storedProc = bullet.GetComponent<Projectile>();
+								if (storedProc) storedProc.owner = controller;
+							}
+						}
 					}
 				}
 			}

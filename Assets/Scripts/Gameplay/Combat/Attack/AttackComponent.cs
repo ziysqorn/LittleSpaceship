@@ -2,34 +2,28 @@ using Game.Interfaces;
 using System.Collections;
 using UnityEngine;
 
-public class AttackComponent
+public class AttackComponent : MonoBehaviour 
 {
-	protected GameObject owner;
-	protected IAttackStrategy strategy;
-
-	public AttackComponent(in GameObject owner, in IAttackStrategy strategy)
-	{
-		this.owner = owner;
-		this.strategy = strategy;
-	}
+	public IAttackStrategy strategy { get; private set; }
+	protected float AttackSpeed;
 
 	public void Attack()
 	{
 		strategy?.Attack();
 	}
 
-	public IEnumerator AttackAfterDelay(float delay)
+	public void SetStrategy(in IAttackStrategy strategy)
 	{
-		yield return new WaitForSeconds(delay);
-		strategy?.Attack();
+		this.strategy = strategy;
 	}
 
-	public IEnumerator AttackLoop(float delay)
+	public void SetAttackSpeed(in float speed)
 	{
-		while (true)
-		{
-			strategy?.Attack();
-			yield return new WaitForSeconds(delay);
-		}
+		this.AttackSpeed = speed;
+	}
+
+	public float GetAttackSpeed()
+	{
+		return this.AttackSpeed;
 	}
 }

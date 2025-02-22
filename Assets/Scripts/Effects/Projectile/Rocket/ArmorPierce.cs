@@ -1,6 +1,7 @@
+using Game.Interfaces;
 using UnityEngine;
 
-public class ArmorPierce : Rocket
+public class ArmorPierce : Rocket, INameableEffect
 {
 	protected override void Awake()
 	{
@@ -18,4 +19,34 @@ public class ArmorPierce : Rocket
     {
         
     }
+
+	public void SetProcName()
+	{
+		projectileName = "ArmorPierce";
+	}
+
+	protected void OnTriggerEnter2D(Collider2D collision)
+	{
+		BaseCharacter target = collision.gameObject.GetComponent<BaseCharacter>();
+		BaseCharacter instigator = owner.GetComponent<BaseCharacter>();
+		if (target && target != instigator && target.gameObject.tag != instigator.gameObject.tag)
+		{
+			PoolManager poolManager = PoolManager.poolManager;
+			if (poolManager)
+			{
+				if (explosion)
+				{
+					Explosion attachedExplosion = explosion.GetComponent<Explosion>();
+					if (attachedExplosion)
+					{
+						INameableEffect nameableEffect = attachedExplosion as INameableEffect;
+						if (nameableEffect != null) nameableEffect.SetProcName();
+					}
+					if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
+					poolManager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
+				}
+				gameObject.SetActive(false);
+			}
+		}
+	}
 }

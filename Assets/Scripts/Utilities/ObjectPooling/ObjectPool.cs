@@ -7,14 +7,14 @@ public class ObjectPool
     private int poolSize = 20;
     Queue<GameObject> objQueue = new Queue<GameObject>();
 
-    public ObjectPool(in GameObject pref)
+    public ObjectPool(GameObject pref)
     {
         objPref = pref;
 		if (objPref)
 		{
 			for (int i = 0; i < poolSize; ++i)
 			{
-				GameObject newObj = GameObject.Instantiate(objPref);
+				GameObject newObj = Object.Instantiate(objPref);
 				newObj.SetActive(false);
 				objQueue.Enqueue(newObj);
 			}
@@ -23,25 +23,25 @@ public class ObjectPool
 
     public GameObject GetObj(Vector3 position, Quaternion rotation)
     {
-        if(objQueue.Count == 0 && objPref)
+        if (objQueue.Count == 0 && objPref)
         {
-			GameObject newObj = GameObject.Instantiate(objPref, position, rotation);
-			newObj.SetActive(false);
-			objQueue.Enqueue(newObj);
-		}
+            GameObject newObj = Object.Instantiate(objPref);
+            newObj.SetActive(false);
+            objQueue.Enqueue(newObj);
+        }
         GameObject frontObj = objQueue.Dequeue();
         frontObj.SetActive(true);
         frontObj.transform.position = position;
         frontObj.transform.rotation = rotation;
-        return frontObj;
+		return frontObj;
     }
 
-    public void RetrieveObj(in GameObject obj)
+    public void RetrieveObj(GameObject obj)
     {
         if (obj)
         {
 			obj.SetActive(false);
 			objQueue.Enqueue(obj);
-        }
+		}
     }
 }

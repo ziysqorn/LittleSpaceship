@@ -10,4 +10,8 @@ namespace Game.Interfaces
 	{
 		public void Shoot(in GameObject controller, in GameObject projectile);
 	}
+	public interface INameableEffect
+	{
+		public void SetProcName();
+	}
 }
