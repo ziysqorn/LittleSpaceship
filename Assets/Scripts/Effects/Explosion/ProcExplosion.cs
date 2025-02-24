@@ -1,7 +1,7 @@
 using Game.Interfaces;
 using UnityEngine;
 
-public class ProcExplosion : Explosion, INameableEffect
+public class ProcExplosion : Explosion, INameablePrefab
 {
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	protected override void Start()
@@ -15,8 +15,13 @@ public class ProcExplosion : Explosion, INameableEffect
         
     }
 
-    public void SetProcName()
+    public void SetPrefabName()
     {
         effectName = "ProcExplosion";
     }
+
+	public string GetPrefabName()
+	{
+		return effectName;
+	}
 }

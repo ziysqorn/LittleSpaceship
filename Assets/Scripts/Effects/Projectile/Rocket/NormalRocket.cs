@@ -1,8 +1,9 @@
 using Game.Interfaces;
+using Unity.Jobs;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class NormalRocket : Rocket, INameableEffect
+public class NormalRocket : Rocket, INameablePrefab
 {
 	protected override void Awake()
 	{
@@ -21,9 +22,14 @@ public class NormalRocket : Rocket, INameableEffect
         
     }
 
-	public void SetProcName()
+	public void SetPrefabName()
 	{
 		projectileName = "NormalRocket";
+	}
+
+	public string GetPrefabName()
+	{
+		return projectileName;
 	}
 
 	protected void OnTriggerEnter2D(Collider2D collision)
@@ -40,12 +46,14 @@ public class NormalRocket : Rocket, INameableEffect
 					Explosion attachedExplosion = explosion.GetComponent<Explosion>();
 					if (attachedExplosion)
 					{
-						INameableEffect nameableEffect = attachedExplosion as INameableEffect;
-						if (nameableEffect != null) nameableEffect.SetProcName();
+						INameablePrefab nameableEffect = attachedExplosion as INameablePrefab;
+						if (nameableEffect != null) nameableEffect.SetPrefabName();
 					}
 					if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
 					poolManager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
 				}
+				AttackComponent attackComp = instigator.GetComponent<AttackComponent>();
+				if(attackComp) GameplayStatics.ApplyDamage(target.gameObject, bulletDamage + attackComp.Damage, owner, gameObject);
 				gameObject.SetActive(false);
 			}
 		}

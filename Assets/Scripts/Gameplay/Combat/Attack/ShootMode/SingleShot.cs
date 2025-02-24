@@ -13,8 +13,8 @@ public class SingleShot : IShootMode
 				Projectile proc = projectile.GetComponent<Projectile>();
 				if (proc)
 				{
-					INameableEffect nameable = proc as INameableEffect;
-					if(nameable != null) nameable.SetProcName();
+					INameablePrefab nameable = proc as INameablePrefab;
+					if(nameable != null) nameable.SetPrefabName();
 					if(proc.projectileName != "")
 					{
 						string procName = proc.projectileName;

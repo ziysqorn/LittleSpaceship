@@ -20,7 +20,8 @@ public class GameInstance : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
-
+		RewardManager rewardManager = RewardManager.instance;
+		if (rewardManager) rewardManager.RewardProc();
     }
 
     // Update is called once per frame

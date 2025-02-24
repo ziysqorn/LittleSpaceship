@@ -154,7 +154,7 @@ MonoBehaviour:
   - {x: 0, y: 0.7, z: 0}
   - {x: -0.4, y: 0, z: 0}
   - {x: 0.4, y: 0, z: 0}
-  currentProjectile: {fileID: 4230232307610843581, guid: 08b8109369a404c4bb77ede8a8fd6b37, type: 3}
+  currentProjectile: {fileID: 4455036843188917439, guid: 9b727be375e839f4f9a878bd82b39a88, type: 3}
 --- !u!95 &-1001971684253762129
 Animator:
   serializedVersion: 7

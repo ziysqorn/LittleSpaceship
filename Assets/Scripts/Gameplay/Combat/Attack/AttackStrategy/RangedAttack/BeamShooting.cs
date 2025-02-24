@@ -1,21 +1,15 @@
 using Game.Interfaces;
 using UnityEngine;
 
-public class BeamShooting : IAttackStrategy
+public class BeamShooting : RangedAttack
 {
-	private IShootMode shootMode;
-	protected GameObject owner;
-	protected GameObject projectile;
-	protected int currentMode = 0;
-
-	public BeamShooting(in GameObject owner, in IShootMode shootMode, in GameObject projectile)
+	public BeamShooting(in GameObject owner, in GameObject projectile)
 	{
 		this.owner = owner;
-		this.shootMode = shootMode;
 		this.projectile = projectile;
 	}
 
-	public void Attack()
+	public override void Attack()
 	{
 		if (owner && projectile)
 		{
@@ -44,5 +38,21 @@ public class BeamShooting : IAttackStrategy
 	public void SetProjectile(in GameObject newProjectile)
 	{
 		if (newProjectile != null) projectile = newProjectile;
+	}
+
+	public override void UpdateCurMode()
+	{
+		switch (currentMode)
+		{
+			case 1:
+				shootMode = new SingleBeam();
+				break;
+			case 2:
+				shootMode = new DoubleBeam();
+				break;
+			case 3:
+				shootMode = new TripleBeam();
+				break;
+		}
 	}
 }

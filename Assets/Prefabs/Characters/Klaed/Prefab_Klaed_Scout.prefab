@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5648548163451954228}
   - component: {fileID: 3644363008044899843}
   - component: {fileID: 33730054083162637}
+  - component: {fileID: 6699498727707384948}
   m_Layer: 3
   m_Name: Prefab_Klaed_Scout
   m_TagString: Enemy
@@ -27,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 2684577330355360152}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.8, y: -0.83, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.44, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,7 +123,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0057400465, y: -0.120545864}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -132,5 +133,23 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 1.5087147, y: 1.4398313}
   m_EdgeRadius: 0
+--- !u!114 &6699498727707384948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684577330355360152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5530c5eb4389fba4e848232a56f74008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
+  sockets:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  destroyedExplosion: {fileID: 8735899874476449953, guid: b8e1437155814d24b9585276aabdf45c, type: 3}

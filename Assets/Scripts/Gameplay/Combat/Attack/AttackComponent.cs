@@ -5,7 +5,8 @@ using UnityEngine;
 public class AttackComponent : MonoBehaviour 
 {
 	public IAttackStrategy strategy { get; private set; }
-	protected float AttackSpeed;
+	public float AttackSpeed { get; private set; }
+	public int Damage { get; private set; }
 
 	public void Attack()
 	{
@@ -22,8 +23,8 @@ public class AttackComponent : MonoBehaviour
 		this.AttackSpeed = speed;
 	}
 
-	public float GetAttackSpeed()
+	public void SetDamage(in int damage)
 	{
-		return this.AttackSpeed;
+		this.Damage = damage;
 	}
 }

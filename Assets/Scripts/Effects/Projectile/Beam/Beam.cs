@@ -5,8 +5,9 @@ using Unity.VisualScripting;
 using Game.Interfaces;
 using System.Collections;
 using UnityEditor.EditorTools;
+using static UnityEngine.GraphicsBuffer;
 
-public class Beam : Projectile, INameableEffect
+public class Beam : Projectile, INameablePrefab
 {
     protected LineRenderer lineRenderer;
     [SerializeField] protected List<Texture> textures = new List<Texture>();
@@ -16,6 +17,7 @@ public class Beam : Projectile, INameableEffect
 	{
 		base.Awake();
         lineRenderer = GetComponent<LineRenderer>();
+		bulletDamage = 2;
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	protected override void Start()
@@ -37,12 +39,17 @@ public class Beam : Projectile, INameableEffect
         }
     }
 
-	public void SetProcName()
+	public void SetPrefabName()
 	{
         projectileName = "Beam";
 	}
 
-    public void ApplyLine()
+	public string GetPrefabName()
+	{
+		return projectileName;
+	}
+
+	public void ApplyLine()
     {
 		lineRenderer.positionCount = 2;
 		lineRenderer.SetPosition(0, gameObject.transform.position);
@@ -84,11 +91,13 @@ public class Beam : Projectile, INameableEffect
 							Explosion attachedExplosion = explosion.GetComponent<Explosion>();
 							if (attachedExplosion)
 							{
-								INameableEffect nameableEffect = attachedExplosion as INameableEffect;
-								if (nameableEffect != null) nameableEffect.SetProcName();
+								INameablePrefab nameableEffect = attachedExplosion as INameablePrefab;
+								if (nameableEffect != null) nameableEffect.SetPrefabName();
 							}
 							if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
 							poolManager.ActivateObjFromPool(attachedExplosion.effectName, hit.point, gameObject.transform.rotation);
+							AttackComponent attackComp = owner.GetComponent<AttackComponent>();
+							if (attackComp) GameplayStatics.ApplyDamage(otherObj, bulletDamage + attackComp.Damage, owner, gameObject);
 						}
 						break;
 					}

@@ -1,7 +1,16 @@
+using Game.Interfaces;
+using GlobalAccess;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
-public class Bomber : BaseEnemy
+public class Bomber : BaseEnemy, IDamageable
 {
+    protected override void Awake()
+    {
+        base.Awake();
+		//MaxHealth = GameConstants.Max_Enemy_Health;
+		CurrentHealth = MaxHealth;
+	}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,4 +22,19 @@ public class Bomber : BaseEnemy
     {
         
     }
+
+    public void TakeDamage(int damageAmount, in GameObject instigator, in GameObject damageCauser)
+    {
+        CurrentHealth -= damageAmount;
+        if (CurrentHealth <= 0)
+        {
+            Death();
+            gameObject.SetActive(false);
+		}
+    }
+
+	protected override void Death()
+	{
+		base.Death();
+	}
 }

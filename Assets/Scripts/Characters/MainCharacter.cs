@@ -9,21 +9,17 @@ public class MainCharacter : BaseCharacter
 {
     protected float Speed;
     protected AttackComponent attackComp;
-    [SerializeField] protected GameObject currentProjectile;
 	protected override void Awake()
     {
         base.Awake();
         MaxHealth = GameConstants.Max_MainCharater_Health;
         CurrentHealth = MaxHealth;
-        Damage = GameConstants.MainCharacter_Damage;
         Speed = GameConstants.MainCharacter_Speed;
 
-        IShootMode shootMode = new DoubleBeam();
-        IAttackStrategy attackStrategy = new BeamShooting(gameObject, shootMode, currentProjectile);
         attackComp = gameObject.GetComponent<AttackComponent>();
         if (attackComp) { 
             attackComp.SetAttackSpeed(GameConstants.MainCharacter_AttackSpeed);
-			attackComp.SetStrategy(attackStrategy);
+            attackComp.SetDamage(GameConstants.MainCharacter_Damage);
 		} 
 
 	}

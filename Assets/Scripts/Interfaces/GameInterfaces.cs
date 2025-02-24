@@ -10,8 +10,13 @@ namespace Game.Interfaces
 	{
 		public void Shoot(in GameObject controller, in GameObject projectile);
 	}
-	public interface INameableEffect
+	public interface INameablePrefab
 	{
-		public void SetProcName();
+		public void SetPrefabName();
+		public string GetPrefabName();
+	}
+	public interface IDamageable
+	{
+		public void TakeDamage(int damageAmount, in GameObject instigator, in GameObject damageCauser);
 	}
 }

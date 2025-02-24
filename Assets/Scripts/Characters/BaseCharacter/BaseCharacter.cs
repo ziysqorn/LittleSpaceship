@@ -1,13 +1,14 @@
 using UnityEngine;
 using GlobalAccess;
 using System.Collections.Generic;
+using System;
+using Game.Interfaces;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
     //Properties
-    protected int MaxHealth;
+    [SerializeField] protected int MaxHealth;
     protected int CurrentHealth;
-	protected int Damage;
 
 	//Booleans
 	protected bool bCanBeDamaged;
@@ -17,6 +18,7 @@ public abstract class BaseCharacter : MonoBehaviour
     protected BoxCollider2D boxCollider;
     protected Rigidbody2D rBody;
     [SerializeField] public Vector3[] sockets = new Vector3[3];
+    [SerializeField] public GameObject destroyedExplosion;
 
 	protected virtual void Awake()
 	{
@@ -31,7 +33,6 @@ public abstract class BaseCharacter : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -39,4 +40,23 @@ public abstract class BaseCharacter : MonoBehaviour
     {
 
     }
+
+    protected virtual void Death()
+    {
+		PoolManager manager = PoolManager.poolManager;
+		if (manager)
+		{
+			if (destroyedExplosion)
+			{
+				Explosion attachedExplosion = destroyedExplosion.GetComponent<Explosion>();
+				if (attachedExplosion)
+				{
+					INameablePrefab nameableEffect = attachedExplosion as INameablePrefab;
+					if (nameableEffect != null) nameableEffect.SetPrefabName();
+				}
+				if (!manager.PoolExisted(attachedExplosion.effectName)) manager.RegisterPool(attachedExplosion.effectName, new ObjectPool(destroyedExplosion));
+				manager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
+			}
+		}
+	}
 }

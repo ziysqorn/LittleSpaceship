@@ -1,4 +1,5 @@
 using GlobalAccess;
+using UnityEditor.Analytics;
 using UnityEngine;
 
 public abstract class BaseEnemy : BaseCharacter
@@ -18,4 +19,15 @@ public abstract class BaseEnemy : BaseCharacter
     {
         
     }
+
+	protected override void Death()
+	{
+		base.Death();
+		RewardManager rewardManager = RewardManager.instance;
+		if (rewardManager)
+		{
+			GameObject reward = rewardManager.RewardProc();
+			if(reward) reward.transform.position = gameObject.transform.position;
+		}
+	}
 }

@@ -2,21 +2,15 @@ using Game.Interfaces;
 using System.Collections;
 using UnityEngine;
 
-public class NormalShooting : IAttackStrategy
+public class NormalShooting : RangedAttack
 {
-	private IShootMode shootMode;
-	protected GameObject owner;
-	protected GameObject projectile;
-	protected int currentMode = 0;
-
-	public NormalShooting(in GameObject owner, in IShootMode shootMode, in GameObject projectile)
+	public NormalShooting(in GameObject owner, in GameObject projectile)
 	{
 		this.owner = owner;
-		this.shootMode = shootMode;
 		this.projectile = projectile;
 	}
 
-	public void Attack()
+	public override void Attack()
 	{
 		if (owner && projectile)
 		{
@@ -25,7 +19,7 @@ public class NormalShooting : IAttackStrategy
 			{
 				AttackComponent attackComponent = character.GetComponent<AttackComponent>();
 				if (attackComponent) {
-					character.StartCoroutine(AttackLoop(attackComponent.GetAttackSpeed()));
+					attackComponent.StartCoroutine(AttackLoop(attackComponent.AttackSpeed));
 				}
 			}
 		}
@@ -53,5 +47,21 @@ public class NormalShooting : IAttackStrategy
 	public void SetProjectile(in GameObject newProjectile)
 	{
 		if(newProjectile != null) projectile = newProjectile;
+	}
+
+	public override void UpdateCurMode()
+	{
+		switch (currentMode)
+		{
+			case 1:
+				shootMode = new SingleShot();
+				break;
+			case 2:
+				shootMode = new DoubleShot();
+				break;
+			case 3:
+				shootMode = new TripleShot();
+				break;
+		}
 	}
 }
