@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2552422376323102929}
   - component: {fileID: 502004983577228554}
   - component: {fileID: 1702393261543908055}
-  - component: {fileID: -5830905457244803419}
+  - component: {fileID: 7061074197371710310}
   m_Layer: 3
   m_Name: Prefab_Nautoran_Scout
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.045392, y: 1.4994117}
   m_EdgeRadius: 0
---- !u!114 &-5830905457244803419
+--- !u!114 &7061074197371710310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,10 +144,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8279504201095460828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5530c5eb4389fba4e848232a56f74008, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ae586685573bf42b1299778510083c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  characterName: Nautoran_Scout
+  MaxHealth: 9
   sockets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3046033139371553886}
   - component: {fileID: 6913877071751724181}
   - component: {fileID: 3524710582325570429}
-  - component: {fileID: 8810949854747640103}
+  - component: {fileID: 2776643939793256068}
   m_Layer: 3
   m_Name: Prefab_Nautoran_Bomber
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.9687078, y: 1.5603554}
   m_EdgeRadius: 0
---- !u!114 &8810949854747640103
+--- !u!114 &2776643939793256068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,10 +144,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8167307290802541918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf6f799deb028b4eb4c52458fabeace, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bbe5162b50cdca4fba15aeb7fa0e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 7
+  characterName: Nautoran_Bomber
+  MaxHealth: 6
   sockets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

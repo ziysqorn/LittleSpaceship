@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e236fc62bba38d47adbaa3066a187cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileName: 
+  projectileName: ArmorPierce
   owner: {fileID: 0}
   explosion: {fileID: 6546461029108629273, guid: f3eae18f6b43bfb4b891b6b063f408bb, type: 3}
 --- !u!50 &1882535809759009709

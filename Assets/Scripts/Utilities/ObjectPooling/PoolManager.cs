@@ -50,7 +50,7 @@ public class PoolManager : MonoBehaviour
 
     public void RetrieveObjToPool(in string poolName, in GameObject prefab)
     {
-        if (poolName != null && prefab != null) pools[poolName].RetrieveObj(prefab);
+        if (poolName != null && pools.ContainsKey(poolName) && prefab != null) pools[poolName].RetrieveObj(prefab);
     }
 
     public bool PoolExisted(in string poolName) {

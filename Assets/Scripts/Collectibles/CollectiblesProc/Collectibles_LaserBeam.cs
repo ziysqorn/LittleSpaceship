@@ -1,11 +1,12 @@
 using Game.Interfaces;
 using UnityEngine;
 
-public class CollectibleLaserBeam : CollectibleProc, INameablePrefab
+public class CollectibleLaserBeam : CollectibleProc
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
 	}
 
     // Update is called once per frame
@@ -13,6 +14,11 @@ public class CollectibleLaserBeam : CollectibleProc, INameablePrefab
     {
         
     }
+
+	protected void OnEnable()
+	{
+		SetPrefabName();
+	}
 
 	protected override void ApplyEffect(in GameObject appliedObj)
 	{
@@ -32,11 +38,7 @@ public class CollectibleLaserBeam : CollectibleProc, INameablePrefab
 				{
 					child.transform.parent = null;
 					PoolManager manager = PoolManager.poolManager;
-					if (manager)
-					{
-						beam.SetPrefabName();
-						manager.RetrieveObjToPool(beam.GetPrefabName(), child);
-					}
+					if (manager && beam.projectileName != "") manager.RetrieveObjToPool(beam.projectileName, child);
 				}
 			}
 			rangedAttack.SetCurMode(curMode);

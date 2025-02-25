@@ -175,4 +175,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8013988fb80832409192047daf0261e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleName: Collectible_LaserBeam
   projectile: {fileID: 4230232307610843581, guid: 08b8109369a404c4bb77ede8a8fd6b37, type: 3}

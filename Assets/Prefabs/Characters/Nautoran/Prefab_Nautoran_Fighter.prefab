@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7872275263188427075}
   - component: {fileID: 988786173137815772}
   - component: {fileID: 1306725861113548764}
-  - component: {fileID: 2296988787528685899}
+  - component: {fileID: 2200114523192702346}
   m_Layer: 3
   m_Name: Prefab_Nautoran_Fighter
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.0082567, y: 1.2696524}
   m_EdgeRadius: 0
---- !u!114 &2296988787528685899
+--- !u!114 &2200114523192702346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5979221620217735635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d2f371da365c249b333c96d610393c, type: 3}
+  m_Script: {fileID: 11500000, guid: 17fcbb80d59f97e4eaed4a5023a6e98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Nautoran_Fighter
   MaxHealth: 12
   sockets:
   - {x: 0, y: 0, z: 0}

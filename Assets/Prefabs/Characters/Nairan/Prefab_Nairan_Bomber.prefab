@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1752487390515257425}
   - component: {fileID: 6587460904657465254}
   - component: {fileID: 5074911128172892634}
-  - component: {fileID: 7877744690457393064}
+  - component: {fileID: 3294007148142866412}
   m_Layer: 3
   m_Name: Prefab_Nairan_Bomber
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.1234627, y: 1.9844596}
   m_EdgeRadius: 0
---- !u!114 &7877744690457393064
+--- !u!114 &3294007148142866412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5694417524463687761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf6f799deb028b4eb4c52458fabeace, type: 3}
+  m_Script: {fileID: 11500000, guid: b9c32fc937d83574591acf16c765dc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Nairan_Bomber
   MaxHealth: 5
   sockets:
   - {x: 0, y: 0, z: 0}

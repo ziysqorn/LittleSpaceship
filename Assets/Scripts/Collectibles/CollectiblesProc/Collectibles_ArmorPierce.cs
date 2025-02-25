@@ -1,7 +1,7 @@
 using Game.Interfaces;
 using UnityEngine;
 
-public class CollectibleArmorPierce : CollectibleProc, INameablePrefab
+public class CollectibleArmorPierce : CollectibleProc
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,6 +14,11 @@ public class CollectibleArmorPierce : CollectibleProc, INameablePrefab
     {
         
     }
+
+	protected void OnEnable()
+	{
+		SetPrefabName();
+	}
 
 	protected override void ApplyEffect(in GameObject appliedObj)
 	{
@@ -33,11 +38,7 @@ public class CollectibleArmorPierce : CollectibleProc, INameablePrefab
 				{
 					child.transform.parent = null;
 					PoolManager manager = PoolManager.poolManager;
-					if (manager)
-					{
-						beam.SetPrefabName();
-						manager.RetrieveObjToPool(beam.GetPrefabName(), child);
-					}
+					if (manager && beam.projectileName != "") manager.RetrieveObjToPool(beam.projectileName, child);
 				}
 			}
 			rangedAttack.SetCurMode(curMode);

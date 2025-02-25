@@ -7,7 +7,7 @@ using System.Collections;
 using UnityEditor.EditorTools;
 using static UnityEngine.GraphicsBuffer;
 
-public class Beam : Projectile, INameablePrefab
+public class Beam : Projectile
 {
     protected LineRenderer lineRenderer;
     [SerializeField] protected List<Texture> textures = new List<Texture>();
@@ -38,16 +38,6 @@ public class Beam : Projectile, INameablePrefab
             ApplyLine();
         }
     }
-
-	public void SetPrefabName()
-	{
-        projectileName = "Beam";
-	}
-
-	public string GetPrefabName()
-	{
-		return projectileName;
-	}
 
 	public void ApplyLine()
     {
@@ -89,13 +79,11 @@ public class Beam : Projectile, INameablePrefab
 						if (explosion)
 						{
 							Explosion attachedExplosion = explosion.GetComponent<Explosion>();
-							if (attachedExplosion)
+							if (attachedExplosion && attachedExplosion.effectName != "")
 							{
-								INameablePrefab nameableEffect = attachedExplosion as INameablePrefab;
-								if (nameableEffect != null) nameableEffect.SetPrefabName();
+								if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
+								poolManager.ActivateObjFromPool(attachedExplosion.effectName, hit.point, gameObject.transform.rotation);
 							}
-							if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
-							poolManager.ActivateObjFromPool(attachedExplosion.effectName, hit.point, gameObject.transform.rotation);
 							AttackComponent attackComp = owner.GetComponent<AttackComponent>();
 							if (attackComp) GameplayStatics.ApplyDamage(otherObj, bulletDamage + attackComp.Damage, owner, gameObject);
 						}

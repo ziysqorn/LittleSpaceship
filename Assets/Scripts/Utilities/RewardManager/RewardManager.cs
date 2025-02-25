@@ -39,14 +39,11 @@ public class RewardManager : MonoBehaviour
             {
                 chosenProc = data.collectibleProcPrefs[procRand];
             }
-            INameablePrefab nameableEffect = chosenProc.GetComponent<INameablePrefab>();
             string chosenPrefName = "";
-            if (nameableEffect != null)
-            {
-                chosenPrefName = nameableEffect.GetPrefabName();
-				nameableEffect.SetPrefabName();
-			}
-
+            if (chosenProc) { 
+                Collectibles collectible = chosenProc.GetComponent<Collectibles>();
+                if(collectible && collectible.collectibleName != "") chosenPrefName = collectible.collectibleName;
+            }
 			PoolManager manager = PoolManager.poolManager;
             if(manager && chosenProc) {
                 if (!manager.PoolExisted(chosenPrefName)) manager.RegisterPool(chosenPrefName, new ObjectPool(chosenProc));

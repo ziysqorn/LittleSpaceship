@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54239d2ff3b043d48a15e41daf35f44b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: ProcExplosion

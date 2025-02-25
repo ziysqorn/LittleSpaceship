@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3579087263031438621}
   - component: {fileID: 7107251967255601641}
   - component: {fileID: 6758594903561876686}
-  - component: {fileID: 8235770945579411710}
+  - component: {fileID: 1489263369593214423}
   m_Layer: 3
   m_Name: Prefab_Nairan_Fighter
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.9468728, y: 1.3452594}
   m_EdgeRadius: 0
---- !u!114 &8235770945579411710
+--- !u!114 &1489263369593214423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,10 +144,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9004791211032881112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d2f371da365c249b333c96d610393c, type: 3}
+  m_Script: {fileID: 11500000, guid: d02c00e43b35b614b863701383f696d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 15
+  characterName: Nairan_Fighter
+  MaxHealth: 10
   sockets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

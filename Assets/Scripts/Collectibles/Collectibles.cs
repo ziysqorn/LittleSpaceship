@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Collectibles : MonoBehaviour
 {
-    protected string collectibleName = "";
+    public string collectibleName = "";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

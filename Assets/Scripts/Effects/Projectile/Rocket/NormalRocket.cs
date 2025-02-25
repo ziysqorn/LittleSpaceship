@@ -3,7 +3,7 @@ using Unity.Jobs;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class NormalRocket : Rocket, INameablePrefab
+public class NormalRocket : Rocket
 {
 	protected override void Awake()
 	{
@@ -22,16 +22,6 @@ public class NormalRocket : Rocket, INameablePrefab
         
     }
 
-	public void SetPrefabName()
-	{
-		projectileName = "NormalRocket";
-	}
-
-	public string GetPrefabName()
-	{
-		return projectileName;
-	}
-
 	protected void OnTriggerEnter2D(Collider2D collision)
 	{
 		BaseCharacter target = collision.gameObject.GetComponent<BaseCharacter>();
@@ -44,13 +34,11 @@ public class NormalRocket : Rocket, INameablePrefab
 				if (explosion)
 				{
 					Explosion attachedExplosion = explosion.GetComponent<Explosion>();
-					if (attachedExplosion)
+					if (attachedExplosion && attachedExplosion.effectName != "")
 					{
-						INameablePrefab nameableEffect = attachedExplosion as INameablePrefab;
-						if (nameableEffect != null) nameableEffect.SetPrefabName();
+						if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
+						poolManager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
 					}
-					if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
-					poolManager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
 				}
 				AttackComponent attackComp = instigator.GetComponent<AttackComponent>();
 				if(attackComp) GameplayStatics.ApplyDamage(target.gameObject, bulletDamage + attackComp.Damage, owner, gameObject);

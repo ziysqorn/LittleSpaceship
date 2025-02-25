@@ -12,10 +12,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Nairan_Scout
       objectReference: {fileID: 0}
+    - target: {fileID: 3052790390445636744, guid: 70fe20f1681ced94ea66d429151227ce, type: 3}
+      propertyPath: MaxHealth
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3052790390445636744, guid: 70fe20f1681ced94ea66d429151227ce, type: 3}
+      propertyPath: characterName
+      value: Nairan_Scout
+      objectReference: {fileID: 0}
     - target: {fileID: 3644363008044899843, guid: 70fe20f1681ced94ea66d429151227ce, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 36e155f5b344d644d8ebe26bfd6b8179, type: 3}
+    - target: {fileID: 5648548163451954228, guid: 70fe20f1681ced94ea66d429151227ce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648548163451954228, guid: 70fe20f1681ced94ea66d429151227ce, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5648548163451954228, guid: 70fe20f1681ced94ea66d429151227ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -1,24 +1,28 @@
 using Game.Interfaces;
 using UnityEngine;
 
-public class Scout : BaseEnemy, IDamageable
+public class Nairan : BaseEnemy, IDamageable
 {
 	protected override void Awake()
 	{
 		base.Awake();
-		//MaxHealth = GameConstants.Max_Enemy_Health;
 		CurrentHealth = MaxHealth;
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+	protected override void Death()
 	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
+		base.Death();
 	}
 
 	public void TakeDamage(int damageAmount, in GameObject instigator, in GameObject damageCauser)
@@ -29,10 +33,5 @@ public class Scout : BaseEnemy, IDamageable
 			Death();
 			gameObject.SetActive(false);
 		}
-	}
-
-	protected override void Death()
-	{
-		base.Death();
 	}
 }

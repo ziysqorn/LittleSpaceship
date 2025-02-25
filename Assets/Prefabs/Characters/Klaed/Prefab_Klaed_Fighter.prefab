@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4016140284380001211}
   - component: {fileID: 6145603825339583206}
   - component: {fileID: 2152060466860935548}
-  - component: {fileID: 8391698813526272154}
+  - component: {fileID: 4660891234921678933}
   m_Layer: 3
   m_Name: Prefab_Klaed_Fighter
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.6069899, y: 1.4689322}
   m_EdgeRadius: 0
---- !u!114 &8391698813526272154
+--- !u!114 &4660891234921678933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,10 +144,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4044507032835139825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d2f371da365c249b333c96d610393c, type: 3}
+  m_Script: {fileID: 11500000, guid: b6d1e70f58668cb4397f594c8918a153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  characterName: Klaed_Fighter
+  MaxHealth: 8
   sockets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

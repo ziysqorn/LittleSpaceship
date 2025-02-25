@@ -1,9 +1,11 @@
+using Game.Interfaces;
 using GlobalAccess;
 using UnityEditor.Analytics;
 using UnityEngine;
 
 public abstract class BaseEnemy : BaseCharacter
 {
+	protected IFightingStyle fightingStyle;
 	protected override void Awake()
 	{
         base.Awake();
@@ -29,5 +31,15 @@ public abstract class BaseEnemy : BaseCharacter
 			GameObject reward = rewardManager.RewardProc();
 			if(reward) reward.transform.position = gameObject.transform.position;
 		}
+	}
+
+	public T GetFightingStyle<T>() where T : class, IFightingStyle
+	{
+		return fightingStyle as T;
+	}
+
+	protected void SetFightingStyle(in IFightingStyle style)
+	{
+		fightingStyle = style;
 	}
 }

@@ -1,7 +1,7 @@
 using Game.Interfaces;
 using UnityEngine;
 
-public class ShipExplosion : Explosion, INameablePrefab
+public class ShipExplosion : Explosion
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -15,13 +15,4 @@ public class ShipExplosion : Explosion, INameablePrefab
         
     }
 
-    public void SetPrefabName()
-    {
-        effectName = "ShipExplosion";
-    }
-
-	public string GetPrefabName()
-	{
-		return effectName;
-	}
 }

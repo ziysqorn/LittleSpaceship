@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3416493506987159328}
   - component: {fileID: 3643269632246070414}
   - component: {fileID: -6354137341794848713}
-  - component: {fileID: -903506083115771367}
+  - component: {fileID: 3208366793015746998}
   m_Layer: 3
   m_Name: Prefab_Klaed_Bomber
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.9383307, y: 1.7818642}
   m_EdgeRadius: 0
---- !u!114 &-903506083115771367
+--- !u!114 &3208366793015746998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2808606683236107599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf6f799deb028b4eb4c52458fabeace, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a13e10fdec7dbc4a8d6218e42a190ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Klaed_Bomber
   MaxHealth: 3
   sockets:
   - {x: 0, y: 0, z: 0}

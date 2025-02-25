@@ -6,7 +6,8 @@ using Game.Interfaces;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
-    //Properties
+	//Properties
+	[SerializeField] public string characterName;
     [SerializeField] protected int MaxHealth;
     protected int CurrentHealth;
 
@@ -49,13 +50,11 @@ public abstract class BaseCharacter : MonoBehaviour
 			if (destroyedExplosion)
 			{
 				Explosion attachedExplosion = destroyedExplosion.GetComponent<Explosion>();
-				if (attachedExplosion)
+				if (attachedExplosion && attachedExplosion.effectName != "")
 				{
-					INameablePrefab nameableEffect = attachedExplosion as INameablePrefab;
-					if (nameableEffect != null) nameableEffect.SetPrefabName();
+					if (!manager.PoolExisted(attachedExplosion.effectName)) manager.RegisterPool(attachedExplosion.effectName, new ObjectPool(destroyedExplosion));
+					manager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
 				}
-				if (!manager.PoolExisted(attachedExplosion.effectName)) manager.RegisterPool(attachedExplosion.effectName, new ObjectPool(destroyedExplosion));
-				manager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
 			}
 		}
 	}
