@@ -30,9 +30,9 @@ public class ObjectPool
             objQueue.Enqueue(newObj);
         }
         GameObject frontObj = objQueue.Dequeue();
-        frontObj.SetActive(true);
         frontObj.transform.position = position;
         frontObj.transform.rotation = rotation;
+		frontObj.SetActive(true);
 		return frontObj;
     }
 

@@ -40,6 +40,7 @@ public class CollectibleArmorPierce : CollectibleProc
 					PoolManager manager = PoolManager.poolManager;
 					if (manager && beam.projectileName != "") manager.RetrieveObjToPool(beam.projectileName, child);
 				}
+				else ++i;
 			}
 			rangedAttack.SetCurMode(curMode);
 			rangedAttack.UpdateCurMode();

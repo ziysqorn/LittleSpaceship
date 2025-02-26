@@ -4,6 +4,8 @@ using UnityEngine;
 public abstract class EnemyWave : MonoBehaviour
 {
     [SerializeField] protected PrefabData prefData;
+    protected List<GameObject> usedPrefList;
+    protected int enemyNum;
 	protected void Awake()
 	{
 	}
@@ -19,4 +21,10 @@ public abstract class EnemyWave : MonoBehaviour
     }
 
     protected abstract void SpawnEnemyWave();
+
+    protected void DecreaseEnemyNum()
+    {
+        --enemyNum;
+        if (enemyNum <= 0) Debug.Log("Wave cleared !");
+    }
 }

@@ -567,9 +567,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4475992546103831175}
-  - component: {fileID: 3672332607828548561}
+  - component: {fileID: 7061446085695658438}
   m_Layer: 0
-  m_Name: NormalKlaedWave
+  m_Name: NormalNairanWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,7 +617,7 @@ Transform:
   - {fileID: 8829716718222012811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3672332607828548561
+--- !u!114 &7061446085695658438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6355922965279125234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db423c2b5492457469bb262f6b172006, type: 3}
+  m_Script: {fileID: 11500000, guid: 8339f998d922be14e9bd6904cdf2eca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}

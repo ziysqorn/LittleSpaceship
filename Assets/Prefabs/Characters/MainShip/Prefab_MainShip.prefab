@@ -156,7 +156,8 @@ MonoBehaviour:
   - {x: 0, y: 0.7, z: 0}
   - {x: -0.4, y: 0, z: 0}
   - {x: 0.4, y: 0, z: 0}
-  destroyedExplosion: {fileID: 0}
+  destroyedExplosion: {fileID: 8735899874476449953, guid: b8e1437155814d24b9585276aabdf45c, type: 3}
+  prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
 --- !u!95 &-1001971684253762129
 Animator:
   serializedVersion: 7

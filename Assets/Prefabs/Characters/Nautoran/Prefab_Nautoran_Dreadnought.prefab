@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 223826343489828568}
   - component: {fileID: 499506381046712971}
   - component: {fileID: 521444219866334486}
+  - component: {fileID: -7020670530252685488}
   m_Layer: 3
   m_Name: Prefab_Nautoran_Dreadnought
   m_TagString: Enemy
@@ -154,3 +155,16 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   destroyedExplosion: {fileID: 8735899874476449953, guid: b8e1437155814d24b9585276aabdf45c, type: 3}
+  prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
+--- !u!114 &-7020670530252685488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565665001341178928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2365b91039338df4a80f0cbb85168e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

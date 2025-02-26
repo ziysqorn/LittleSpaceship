@@ -5,23 +5,14 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Game.Interfaces;
 
-public class MainCharacter : BaseCharacter
+public class MainCharacter : BaseCharacter, IDamageable
 {
     protected float Speed;
     protected AttackComponent attackComp;
+	[SerializeField] protected PrefabData prefData;
 	protected override void Awake()
     {
-        base.Awake();
-        MaxHealth = GameConstants.Max_MainCharater_Health;
-        CurrentHealth = MaxHealth;
-        Speed = GameConstants.MainCharacter_Speed;
-
-        attackComp = gameObject.GetComponent<AttackComponent>();
-        if (attackComp) { 
-            attackComp.SetAttackSpeed(GameConstants.MainCharacter_AttackSpeed);
-            attackComp.SetDamage(GameConstants.MainCharacter_Damage);
-		} 
-
+		base.Awake();
 	}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,8 +21,22 @@ public class MainCharacter : BaseCharacter
         attackComp?.Attack();
     }
 
-    // Update is called once per frame
-    void Update()
+	protected void OnEnable()
+	{
+		MaxHealth = GameConstants.Max_MainCharater_Health;
+		CurrentHealth = MaxHealth;
+		Speed = GameConstants.MainCharacter_Speed;
+
+		attackComp = gameObject.GetComponent<AttackComponent>();
+		if (attackComp)
+		{
+			attackComp.SetAttackSpeed(GameConstants.MainCharacter_AttackSpeed);
+			attackComp.SetDamage(GameConstants.MainCharacter_Damage);
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         Move();
 	}
@@ -42,4 +47,22 @@ public class MainCharacter : BaseCharacter
         mousePos.z = transform.position.z;
         transform.position = Vector3.Lerp(transform.position, mousePos, Speed * Time.deltaTime);
     }
+
+	public void TakeDamage(int damageAmount, in GameObject instigator, in GameObject damageCauser)
+	{
+		if (prefData)
+		{
+			PoolManager manager = PoolManager.poolManager;
+			if(manager && prefData.shieldPref)
+			{
+				Shield shield = prefData.shieldPref.GetComponent<Shield>();
+				if (shield)
+				{
+					if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
+					GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
+					if(newShield) newShield.transform.parent = transform;
+				}
+			}
+		}
+	}
 }

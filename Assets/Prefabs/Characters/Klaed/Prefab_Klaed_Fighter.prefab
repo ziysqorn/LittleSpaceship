@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6145603825339583206}
   - component: {fileID: 2152060466860935548}
   - component: {fileID: 4660891234921678933}
+  - component: {fileID: -5924627918509465000}
   m_Layer: 3
   m_Name: Prefab_Klaed_Fighter
   m_TagString: Enemy
@@ -154,3 +155,16 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   destroyedExplosion: {fileID: 8735899874476449953, guid: b8e1437155814d24b9585276aabdf45c, type: 3}
+  prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
+--- !u!114 &-5924627918509465000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044507032835139825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2365b91039338df4a80f0cbb85168e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

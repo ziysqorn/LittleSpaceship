@@ -1,11 +1,14 @@
 using Game.Interfaces;
 using GlobalAccess;
+using System.Collections;
 using UnityEditor.Analytics;
 using UnityEngine;
 
 public abstract class BaseEnemy : BaseCharacter
 {
 	protected IFightingStyle fightingStyle;
+	protected AttackComponent attackComp;
+	[SerializeField] protected PrefabData prefData;
 	protected override void Awake()
 	{
         base.Awake();
@@ -22,6 +25,27 @@ public abstract class BaseEnemy : BaseCharacter
         
     }
 
+	protected void OnEnable()
+	{
+		MaxHealth = GameConstants.Max_MainCharater_Health;
+		CurrentHealth = MaxHealth;
+
+		if(!attackComp) attackComp = gameObject.GetComponent<AttackComponent>();
+		if (attackComp)
+		{
+			float randAtkSpeed = Random.Range(GameConstants.Enemy_AttackSpeed, 20.0f);
+			attackComp.SetAttackSpeed(randAtkSpeed);
+			attackComp.SetDamage(GameConstants.Enemy_Damage);
+			if (prefData)
+			{
+				NormalShooting attackStrategy = new NormalShooting(gameObject, prefData.normalRocketPref);
+				attackStrategy.SetShootMode(new SingleShot());
+				attackComp.SetStrategy(attackStrategy);
+				StartCoroutine(ReleaseAttack(randAtkSpeed));
+			}
+		}
+	}
+
 	protected override void Death()
 	{
 		base.Death();
@@ -30,6 +54,12 @@ public abstract class BaseEnemy : BaseCharacter
 		{
 			GameObject reward = rewardManager.RewardProc();
 			if(reward) reward.transform.position = gameObject.transform.position;
+		}
+		PoolManager manager = PoolManager.poolManager;
+		if (manager)
+		{
+			gameObject.transform.parent = null;
+			manager.RetrieveObjToPool(characterName, gameObject);
 		}
 	}
 
@@ -41,5 +71,11 @@ public abstract class BaseEnemy : BaseCharacter
 	protected void SetFightingStyle(in IFightingStyle style)
 	{
 		fightingStyle = style;
+	}
+
+	IEnumerator ReleaseAttack(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		attackComp.Attack();
 	}
 }

@@ -29,7 +29,7 @@ public class CollectibleRocket : CollectibleProc
 			Projectile proc = projectile.GetComponent<Projectile>();
 			int curMode = rangedAttack != null ? rangedAttack.IncreaseCurMode(proc.projectileName) : 1;
 			if (curMode == 1) rangedAttack = new NormalShooting(appliedObj, projectile);
-			for (int i = 0; i < appliedObj.transform.childCount; ++i)
+			for (int i = 0; i < appliedObj.transform.childCount;)
 			{
 				GameObject child = appliedObj.transform.GetChild(i).gameObject;
 				Beam beam = child.GetComponent<Beam>();
@@ -39,6 +39,7 @@ public class CollectibleRocket : CollectibleProc
 					PoolManager manager = PoolManager.poolManager;
 					if (manager && beam.projectileName != "") manager.RetrieveObjToPool(beam.projectileName, child);
 				}
+				else ++i;
 			}
 			rangedAttack.SetCurMode(curMode);
 			rangedAttack.UpdateCurMode();

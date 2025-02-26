@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7107251967255601641}
   - component: {fileID: 6758594903561876686}
   - component: {fileID: 1489263369593214423}
+  - component: {fileID: -6026300518960650559}
   m_Layer: 3
   m_Name: Prefab_Nairan_Fighter
   m_TagString: Enemy
@@ -153,4 +154,17 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  destroyedExplosion: {fileID: 0}
+  destroyedExplosion: {fileID: 8735899874476449953, guid: b8e1437155814d24b9585276aabdf45c, type: 3}
+  prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
+--- !u!114 &-6026300518960650559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004791211032881112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2365b91039338df4a80f0cbb85168e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

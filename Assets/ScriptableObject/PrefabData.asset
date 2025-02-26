@@ -31,3 +31,5 @@ MonoBehaviour:
   - {fileID: 8167307290802541918, guid: d5aa3de9df3360247b9acf126becf37c, type: 3}
   - {fileID: 5979221620217735635, guid: 5eb7744c1c0e3bc4586dc30581f28016, type: 3}
   - {fileID: 1565665001341178928, guid: bc4d220ab9113c84f950edd7b970e834, type: 3}
+  normalRocketPref: {fileID: 4455036843188917439, guid: 9b727be375e839f4f9a878bd82b39a88, type: 3}
+  shieldPref: {fileID: 5330336355337269876, guid: 6b82d1ef22cf998469a464c7388630f4, type: 3}

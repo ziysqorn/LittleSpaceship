@@ -9,6 +9,7 @@ public abstract class BaseCharacter : MonoBehaviour
 	//Properties
 	[SerializeField] public string characterName;
     [SerializeField] protected int MaxHealth;
+	public event Action OnDead;
     protected int CurrentHealth;
 
 	//Booleans
@@ -56,6 +57,7 @@ public abstract class BaseCharacter : MonoBehaviour
 					manager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
 				}
 			}
+			OnDead?.Invoke();
 		}
 	}
 }

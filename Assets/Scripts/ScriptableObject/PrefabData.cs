@@ -8,4 +8,6 @@ public class PrefabData : ScriptableObject
     public List<GameObject> klaedPrefs;
 	public List<GameObject> nairanPrefs;
 	public List<GameObject> nautoranPrefs;
+	public GameObject normalRocketPref;
+	public GameObject shieldPref;
 }
