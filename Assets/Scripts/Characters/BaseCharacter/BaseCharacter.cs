@@ -14,6 +14,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
 	//Booleans
 	protected bool bCanBeDamaged;
+	protected bool bIsDead;
 
 
     //Components
@@ -43,7 +44,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
     }
 
-    protected virtual void Death()
+	protected virtual void Death()
     {
 		PoolManager manager = PoolManager.poolManager;
 		if (manager)

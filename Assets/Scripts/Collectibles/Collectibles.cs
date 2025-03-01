@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Collectibles : MonoBehaviour
 {
     public string collectibleName = "";
+    protected int point;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +19,12 @@ public abstract class Collectibles : MonoBehaviour
 	{
         if (collision != null && collision.gameObject && collision.gameObject.tag == "Player") {
             ApplyEffect(collision.gameObject);
-            PoolManager manager = PoolManager.poolManager;
+            MainSceneScript mainScene = FindFirstObjectByType<MainSceneScript>();
+			if (mainScene)
+			{
+                mainScene.UpdateScore(point);
+			}
+			PoolManager manager = PoolManager.poolManager;
             if (manager) manager.RetrieveObjToPool(collectibleName, gameObject);
 		}
 	}

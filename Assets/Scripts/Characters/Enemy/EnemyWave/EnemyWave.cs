@@ -10,21 +10,27 @@ public abstract class EnemyWave : MonoBehaviour
 	{
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+	protected virtual void Start()
     {
 	}
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        
-    }
+		transform.position = Vector3.Lerp(transform.position, new Vector3(0.0f, -4.0f, 0.0f), 0.5f * Time.deltaTime);
+	}
 
     protected abstract void SpawnEnemyWave();
 
     protected void DecreaseEnemyNum()
     {
         --enemyNum;
-        if (enemyNum <= 0) Debug.Log("Wave cleared !");
+		//Debug.Log($"Enemy died. enemyNum remaining: {enemyNum}");
+		if (enemyNum <= 0)
+        {
+			//Debug.Log("All died!");
+			MainSceneScript mainScene = FindFirstObjectByType<MainSceneScript>();
+            mainScene.IncreaseCurWave();
+        }
     }
 }

@@ -31,5 +31,15 @@ MonoBehaviour:
   - {fileID: 8167307290802541918, guid: d5aa3de9df3360247b9acf126becf37c, type: 3}
   - {fileID: 5979221620217735635, guid: 5eb7744c1c0e3bc4586dc30581f28016, type: 3}
   - {fileID: 1565665001341178928, guid: bc4d220ab9113c84f950edd7b970e834, type: 3}
+  enemyWavesPrefs:
+  - {fileID: 6355922965279125234, guid: e2df8e2bd50a2024aae0e5284929b8c0, type: 3}
+  - {fileID: 6355922965279125234, guid: 17f22d4df3960c14c8e1b8cfe1610cfc, type: 3}
+  - {fileID: 6355922965279125234, guid: 29b7de543e0efce42a2ce433d9086a00, type: 3}
   normalRocketPref: {fileID: 4455036843188917439, guid: 9b727be375e839f4f9a878bd82b39a88, type: 3}
   shieldPref: {fileID: 5330336355337269876, guid: 6b82d1ef22cf998469a464c7388630f4, type: 3}
+  mainMenuPref: {fileID: 1209281058407077138, guid: 84b5f498024e72f4c8a47bbb778b30bc, type: 3}
+  savedMainMenuPref: {fileID: 1209281058407077138, guid: 9db9686382798c94fa6d24e9db228328, type: 3}
+  pauseMenuPref: {fileID: 2058542979665555344, guid: 38e6e4bd4816d824e9d67c04fdd13945, type: 3}
+  tryAgainMenuPref: {fileID: 2058542979665555344, guid: 0549362b4accc76449ae90e5fed1bedf, type: 3}
+  congratsMenuPref: {fileID: 2058542979665555344, guid: 5a05fd44bdb42df4da1caafebc7489ff, type: 3}
+  heartPref: {fileID: 3279678970414951764, guid: de411baa3e23efb419ec6e618f1c3899, type: 3}

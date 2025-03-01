@@ -30,6 +30,11 @@ public class ObjectPool
             objQueue.Enqueue(newObj);
         }
         GameObject frontObj = objQueue.Dequeue();
+        if (!frontObj)
+        {
+            frontObj = Object.Instantiate(objPref);
+            frontObj.SetActive(false);
+        }
         frontObj.transform.position = position;
         frontObj.transform.rotation = rotation;
 		frontObj.SetActive(true);

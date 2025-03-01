@@ -12,16 +12,10 @@ public class GameInstance : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		else
-		{
-			Destroy(gameObject);
-		}
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
-		RewardManager rewardManager = RewardManager.instance;
-		if (rewardManager) rewardManager.RewardProc();
     }
 
     // Update is called once per frame

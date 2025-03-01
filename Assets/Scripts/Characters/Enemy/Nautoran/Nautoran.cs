@@ -30,8 +30,11 @@ public class Nautoran : BaseEnemy, IDamageable
 		CurrentHealth -= damageAmount;
 		if (CurrentHealth <= 0)
 		{
-			Death();
-			gameObject.SetActive(false);
+			if (!bIsDead)
+			{
+				Death();
+				bIsDead = true;
+			}
 		}
 	}
 }

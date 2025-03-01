@@ -24,25 +24,51 @@ public class NormalRocket : Rocket
 
 	protected void OnTriggerEnter2D(Collider2D collision)
 	{
-		BaseCharacter target = collision.gameObject.GetComponent<BaseCharacter>();
+		GameObject target = collision.gameObject;
 		BaseCharacter instigator = owner.GetComponent<BaseCharacter>();
 		if (target && target != instigator && target.gameObject.tag != instigator.gameObject.tag)
 		{
-			PoolManager poolManager = PoolManager.poolManager;
-			if (poolManager)
+			Shield shield = target.GetComponent<Shield>();
+			if(shield)
 			{
-				if (explosion)
+				if(target.transform.parent.gameObject != owner)
 				{
-					Explosion attachedExplosion = explosion.GetComponent<Explosion>();
-					if (attachedExplosion && attachedExplosion.effectName != "")
+					PoolManager poolManager = PoolManager.poolManager;
+					if (poolManager)
 					{
-						if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
-						poolManager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
+						if (explosion)
+						{
+							Explosion attachedExplosion = explosion.GetComponent<Explosion>();
+							if (attachedExplosion && attachedExplosion.effectName != "")
+							{
+								if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
+								poolManager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
+							}
+						}
+						AttackComponent attackComp = instigator.GetComponent<AttackComponent>();
+						if (attackComp) GameplayStatics.ApplyDamage(target, bulletDamage + attackComp.Damage, owner, gameObject);
+						gameObject.SetActive(false);
 					}
 				}
-				AttackComponent attackComp = instigator.GetComponent<AttackComponent>();
-				if(attackComp) GameplayStatics.ApplyDamage(target.gameObject, bulletDamage + attackComp.Damage, owner, gameObject);
-				gameObject.SetActive(false);
+			}
+			else
+			{
+				PoolManager poolManager = PoolManager.poolManager;
+				if (poolManager)
+				{
+					if (explosion)
+					{
+						Explosion attachedExplosion = explosion.GetComponent<Explosion>();
+						if (attachedExplosion && attachedExplosion.effectName != "")
+						{
+							if (!poolManager.PoolExisted(attachedExplosion.effectName)) poolManager.RegisterPool(attachedExplosion.effectName, new ObjectPool(explosion));
+							poolManager.ActivateObjFromPool(attachedExplosion.effectName, gameObject.transform.position, gameObject.transform.rotation);
+						}
+					}
+					AttackComponent attackComp = instigator.GetComponent<AttackComponent>();
+					if (attackComp) GameplayStatics.ApplyDamage(target, bulletDamage + attackComp.Damage, owner, gameObject);
+					gameObject.SetActive(false);
+				}
 			}
 		}
 	}

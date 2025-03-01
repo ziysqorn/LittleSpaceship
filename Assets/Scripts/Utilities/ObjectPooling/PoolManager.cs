@@ -13,10 +13,6 @@ public class PoolManager : MonoBehaviour
 			poolManager = this;
             DontDestroyOnLoad(gameObject);
 		}
-        else
-        {
-            Destroy(gameObject);
-        }
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()

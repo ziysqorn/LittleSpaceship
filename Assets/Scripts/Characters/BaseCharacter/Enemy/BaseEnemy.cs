@@ -29,7 +29,7 @@ public abstract class BaseEnemy : BaseCharacter
 	{
 		MaxHealth = GameConstants.Max_MainCharater_Health;
 		CurrentHealth = MaxHealth;
-
+		bIsDead = false;
 		if(!attackComp) attackComp = gameObject.GetComponent<AttackComponent>();
 		if (attackComp)
 		{

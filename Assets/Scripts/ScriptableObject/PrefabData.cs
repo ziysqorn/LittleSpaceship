@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,13 @@ public class PrefabData : ScriptableObject
     public List<GameObject> klaedPrefs;
 	public List<GameObject> nairanPrefs;
 	public List<GameObject> nautoranPrefs;
+	public List<GameObject> enemyWavesPrefs;
 	public GameObject normalRocketPref;
 	public GameObject shieldPref;
+	public GameObject mainMenuPref;
+	public GameObject savedMainMenuPref;
+	public GameObject pauseMenuPref;
+	public GameObject tryAgainMenuPref;
+	public GameObject congratsMenuPref;
+	public GameObject heartPref;
 }

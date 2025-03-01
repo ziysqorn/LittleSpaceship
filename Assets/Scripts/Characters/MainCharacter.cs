@@ -10,6 +10,8 @@ public class MainCharacter : BaseCharacter, IDamageable
     protected float Speed;
     protected AttackComponent attackComp;
 	[SerializeField] protected PrefabData prefData;
+
+	public bool bCanMove = true;
 	protected override void Awake()
     {
 		base.Awake();
@@ -24,8 +26,19 @@ public class MainCharacter : BaseCharacter, IDamageable
 	protected void OnEnable()
 	{
 		MaxHealth = GameConstants.Max_MainCharater_Health;
-		CurrentHealth = MaxHealth;
+		PlayerInfo playerInfo = GameplayStatics.LoadGame<PlayerInfo>("PlayerInfo.space");
+		if (playerInfo != null)
+		{
+			CurrentHealth = playerInfo.playerHealth;
+		}
+		else CurrentHealth = MaxHealth;
+		HUD playerHUD = FindFirstObjectByType<HUD>();
+		if (playerHUD)
+		{
+			playerHUD.LoadHeart(CurrentHealth);
+		}
 		Speed = GameConstants.MainCharacter_Speed;
+		bIsDead = false; 
 
 		attackComp = gameObject.GetComponent<AttackComponent>();
 		if (attackComp)
@@ -61,6 +74,22 @@ public class MainCharacter : BaseCharacter, IDamageable
 					if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
 					GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
 					if(newShield) newShield.transform.parent = transform;
+				}
+				--CurrentHealth;
+				if(CurrentHealth <= 0)
+				{
+					if (!bIsDead)
+					{
+						Death();
+						bIsDead = true;
+						Instantiate(prefData.tryAgainMenuPref);
+						Destroy(gameObject);
+					}
+				}
+				HUD playerHUD = FindFirstObjectByType<HUD>();
+				if (playerHUD)
+				{
+					playerHUD.DecreaseHeart();
 				}
 			}
 		}

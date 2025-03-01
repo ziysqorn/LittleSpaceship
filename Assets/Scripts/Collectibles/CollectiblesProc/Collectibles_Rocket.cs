@@ -6,6 +6,7 @@ public class CollectibleRocket : CollectibleProc
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+		point = 10;
 	}
 
     // Update is called once per frame

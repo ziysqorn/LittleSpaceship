@@ -3,18 +3,18 @@ using UnityEngine;
 public abstract class NormalWave : EnemyWave
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-
+		base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	protected override void Update()
+	{
+		base.Update();
+	}
 
-    protected override void SpawnEnemyWave()
+	protected override void SpawnEnemyWave()
     {
 		if (prefData && gameObject && usedPrefList != null)
 		{
@@ -32,7 +32,11 @@ public abstract class NormalWave : EnemyWave
 						if (!manager.PoolExisted(enemy.characterName)) manager.RegisterPool(enemy.characterName, new ObjectPool(usedPrefList[randEnemy]));
 						GameObject ship = manager.ActivateObjFromPool(enemy.characterName, child.transform.position, child.transform.rotation);
 						BaseEnemy enemyShip = ship.GetComponent<BaseEnemy>();
-						if (enemyShip) enemyShip.OnDead += DecreaseEnemyNum;
+						if (enemyShip)
+						{
+							enemyShip.OnDead -= DecreaseEnemyNum;
+							enemyShip.OnDead += DecreaseEnemyNum;
+						}
 						ship.transform.parent = child.transform;
 						//ship.transform.localRotation = new Quaternion(0.0f, 0.0f, 180.0f, 0.0f);
 					}
