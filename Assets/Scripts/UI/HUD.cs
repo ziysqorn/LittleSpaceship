@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
@@ -34,7 +36,9 @@ public class HUD : MonoBehaviour
             int childNum = panel.transform.childCount;
             if(childNum >= 0)
             {
-                Destroy(panel.transform.GetChild(childNum - 1).gameObject);
+                GameObject lastChild = panel.transform.GetChild(childNum - 1).gameObject;
+                lastChild.transform.SetParent(null, false);
+                Destroy(lastChild);
             }
 		}
     }
@@ -46,7 +50,7 @@ public class HUD : MonoBehaviour
 			for (int i = 0; i < heart; ++i)
 			{
                 GameObject newHeart = Instantiate(prefData.heartPref);
-                newHeart.transform.SetParent(panel.transform, false);
+				newHeart.transform.SetParent(panel.transform, false);
 			}
 		}
     }

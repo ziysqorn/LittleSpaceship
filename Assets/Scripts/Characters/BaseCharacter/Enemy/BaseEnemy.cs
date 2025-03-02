@@ -1,7 +1,6 @@
 using Game.Interfaces;
 using GlobalAccess;
 using System.Collections;
-using UnityEditor.Analytics;
 using UnityEngine;
 
 public abstract class BaseEnemy : BaseCharacter

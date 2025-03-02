@@ -1,11 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
-using Game.Interfaces;
 using System.Collections;
-using UnityEditor.EditorTools;
-using static UnityEngine.GraphicsBuffer;
 
 public class Beam : Projectile
 {
