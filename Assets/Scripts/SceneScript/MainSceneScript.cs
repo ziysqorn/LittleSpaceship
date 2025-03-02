@@ -3,7 +3,7 @@ using UnityEngine;
 public class MainSceneScript : MonoBehaviour
 {
     protected int maxWave = 3;
-    protected int curWave = 0;
+    public int curWave { get; private set; } = 0;
     public int curScore {get; private set;}
     [SerializeField] protected PrefabData prefData;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,6 +36,7 @@ public class MainSceneScript : MonoBehaviour
         {
             curScore = scoreboardSave.curScore;
         }
+        else curScore = 0;
     }
 
     public void UpdateScore(int score)

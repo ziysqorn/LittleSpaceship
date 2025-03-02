@@ -18,8 +18,6 @@ public class TryAgainMenu : MonoBehaviour
 		if (mainScene != null && scoreboardSave != null)
 		{
             scoreboardSave.maxScore = Mathf.Max(scoreboardSave.maxScore, mainScene.curScore);
-            if (txt_HighestScore)
-                txt_HighestScore.text = scoreboardSave.maxScore.ToString();
             scoreboardSave.curScore = 0;
 			GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
 		}
@@ -49,13 +47,12 @@ public class TryAgainMenu : MonoBehaviour
 
     public void TryAgainClicked()
     {
-		Debug.Log("Try again clicked !");
 		SceneManager.LoadScene("MainScene");
 	}
 
     public void MainMenuClicked()
     {
-        Debug.Log("Main menu clicked !");
+        GameplayStatics.DeleteSaveGame("GameProgress.space");
         SceneManager.LoadScene("MainMenu");
     }
 }

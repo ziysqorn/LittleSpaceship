@@ -10,7 +10,7 @@ public abstract class BaseCharacter : MonoBehaviour
 	[SerializeField] public string characterName;
     [SerializeField] protected int MaxHealth;
 	public event Action OnDead;
-    protected int CurrentHealth;
+    public int CurrentHealth { get; protected set; }
 
 	//Booleans
 	protected bool bCanBeDamaged;

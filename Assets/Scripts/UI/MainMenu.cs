@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
             scoreboardSave.maxScore = 0;
 		}
         GameplayStatics.DeleteSaveGame("GameProgress.space");
+		GameplayStatics.DeleteSaveGame("PlayerInfo.space");
         GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
         SceneManager.LoadScene("MainScene");
     }

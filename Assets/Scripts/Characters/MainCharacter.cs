@@ -11,6 +11,8 @@ public class MainCharacter : BaseCharacter, IDamageable
     protected AttackComponent attackComp;
 	[SerializeField] protected PrefabData prefData;
 
+	protected PlayerInput playerInput;
+
 	public bool bCanMove = true;
 	protected override void Awake()
     {
@@ -19,6 +21,7 @@ public class MainCharacter : BaseCharacter, IDamageable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+		playerInput = GetComponent<PlayerInput>();
         Cursor.visible = false;
         attackComp?.Attack();
     }
