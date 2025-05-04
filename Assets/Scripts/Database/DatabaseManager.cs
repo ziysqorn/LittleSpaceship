@@ -4,6 +4,7 @@ public class DatabaseManager : MonoBehaviour
 {
     public static DatabaseManager instance;
     public CombatDatabase combatDb;
+    public QuizDatabase quizDb;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
@@ -11,6 +12,7 @@ public class DatabaseManager : MonoBehaviour
         {
             instance = this;
             combatDb = new CombatDatabase();
+            quizDb = new QuizDatabase();
             DontDestroyOnLoad(gameObject);
         }
     }

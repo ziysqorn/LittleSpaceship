@@ -14,7 +14,7 @@ public class Shield : MonoBehaviour
 
 	protected void OnEnable()
 	{
-        Invoke("DisableShield", 5.0f);
+        Invoke("DisableShield", 3.0f);
 	}
 
 	// Update is called once per frame
