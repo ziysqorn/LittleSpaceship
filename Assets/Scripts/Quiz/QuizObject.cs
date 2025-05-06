@@ -4,10 +4,10 @@ using UnityEngine;
 public class QuizObject
 {
     public string topic;
-	protected int level { get; private set; }
-    protected string question { get; private set; }
-    protected string rightAnswer { get; private set; }
-	protected List<string> answers { get; private set; }
+	public int level { get; private set; }
+	public string question { get; private set; }
+	public string rightAnswer { get; private set; }
+	public List<string> answers { get; private set; }
 
 	public QuizObject()
 	{

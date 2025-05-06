@@ -87,6 +87,7 @@ public class MainCharacter : BaseCharacter, IDamageable
 						bIsDead = true;
 						Instantiate(prefData.tryAgainMenuPref);
 						Destroy(gameObject);
+						return;
 					}
 				}
 				HUD playerHUD = FindFirstObjectByType<HUD>();
