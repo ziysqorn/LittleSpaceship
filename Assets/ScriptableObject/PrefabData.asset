@@ -42,4 +42,5 @@ MonoBehaviour:
   pauseMenuPref: {fileID: 2058542979665555344, guid: 38e6e4bd4816d824e9d67c04fdd13945, type: 3}
   tryAgainMenuPref: {fileID: 2058542979665555344, guid: 0549362b4accc76449ae90e5fed1bedf, type: 3}
   congratsMenuPref: {fileID: 2058542979665555344, guid: 5a05fd44bdb42df4da1caafebc7489ff, type: 3}
+  quizDialogWindowPref: {fileID: 8616015110731186524, guid: 9b14a760e33a421459e03cf150eaadd7, type: 3}
   heartPref: {fileID: 3279678970414951764, guid: de411baa3e23efb419ec6e618f1c3899, type: 3}

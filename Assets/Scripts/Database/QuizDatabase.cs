@@ -9,7 +9,7 @@ public class QuizDatabase
     protected Dictionary<string, List<QuizObject>> quizMap = new Dictionary<string, List<QuizObject>>();
 	protected QuizObject currentQuiz;
 	protected int currentLevel;
-	protected HashSet<string> askedQuestionSet;
+	protected HashSet<string> askedQuestionSet = new HashSet<string>();
     public QuizDatabase()
     {
 		TextAsset quizFile = Resources.Load<TextAsset>("QuizDatabase");

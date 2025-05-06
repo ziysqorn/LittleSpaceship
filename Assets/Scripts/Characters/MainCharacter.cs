@@ -71,30 +71,34 @@ public class MainCharacter : BaseCharacter, IDamageable
 			PoolManager manager = PoolManager.poolManager;
 			if(manager && prefData.shieldPref)
 			{
-				Shield shield = prefData.shieldPref.GetComponent<Shield>();
-				if (shield)
+				//Shield shield = prefData.shieldPref.GetComponent<Shield>();
+				//if (shield)
+				//{
+				//	if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
+				//	GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
+				//	if(newShield) newShield.transform.parent = transform;
+				//}
+				if (prefData.quizDialogWindowPref)
 				{
-					if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
-					GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
-					if(newShield) newShield.transform.parent = transform;
+					Instantiate(prefData.quizDialogWindowPref);
 				}
-				--CurrentHealth;
-				if(CurrentHealth <= 0)
-				{
-					if (!bIsDead)
-					{
-						Death();
-						bIsDead = true;
-						Instantiate(prefData.tryAgainMenuPref);
-						Destroy(gameObject);
-						return;
-					}
-				}
-				HUD playerHUD = FindFirstObjectByType<HUD>();
-				if (playerHUD)
-				{
-					playerHUD.DecreaseHeart();
-				}
+				//--CurrentHealth;
+				//if(CurrentHealth <= 0)
+				//{
+				//	if (!bIsDead)
+				//	{
+				//		Death();
+				//		bIsDead = true;
+				//		Instantiate(prefData.tryAgainMenuPref);
+				//		Destroy(gameObject);
+				//		return;
+				//	}
+				//}
+				//HUD playerHUD = FindFirstObjectByType<HUD>();
+				//if (playerHUD)
+				//{
+				//	playerHUD.DecreaseHeart();
+				//}
 			}
 		}
 	}
