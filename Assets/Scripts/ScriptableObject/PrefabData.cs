@@ -18,5 +18,6 @@ public class PrefabData : ScriptableObject
 	public GameObject tryAgainMenuPref;
 	public GameObject congratsMenuPref;
 	public GameObject quizDialogWindowPref;
+	public GameObject screenMessagePref;
 	public GameObject heartPref;
 }

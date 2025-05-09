@@ -80,26 +80,34 @@ public class MainCharacter : BaseCharacter, IDamageable
 				//}
 				if (prefData.quizDialogWindowPref)
 				{
-					Instantiate(prefData.quizDialogWindowPref);
+					GameObject quizDialogWindow = Instantiate(prefData.quizDialogWindowPref);
+					QuizWindow quizWindow = quizDialogWindow.GetComponent<QuizWindow>();
+					if (quizWindow != null) {
+						quizWindow.setOwner(this);
+					}
 				}
-				//--CurrentHealth;
-				//if(CurrentHealth <= 0)
-				//{
-				//	if (!bIsDead)
-				//	{
-				//		Death();
-				//		bIsDead = true;
-				//		Instantiate(prefData.tryAgainMenuPref);
-				//		Destroy(gameObject);
-				//		return;
-				//	}
-				//}
-				//HUD playerHUD = FindFirstObjectByType<HUD>();
-				//if (playerHUD)
-				//{
-				//	playerHUD.DecreaseHeart();
-				//}
 			}
+		}
+	}
+
+	public void Hurt()
+	{
+		--CurrentHealth;
+		if (CurrentHealth <= 0)
+		{
+			if (!bIsDead)
+			{
+				Death();
+				bIsDead = true;
+				Instantiate(prefData.tryAgainMenuPref);
+				Destroy(gameObject);
+				return;
+			}
+		}
+		HUD playerHUD = FindFirstObjectByType<HUD>();
+		if (playerHUD)
+		{
+			playerHUD.DecreaseHeart();
 		}
 	}
 }

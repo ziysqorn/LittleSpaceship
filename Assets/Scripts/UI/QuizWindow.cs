@@ -9,6 +9,10 @@ public class QuizWindow : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI quizTimerText;
 	[SerializeField] protected TextMeshProUGUI quizQuestionText;
     [SerializeField] protected GameObject toggleContainer;
+    [SerializeField] protected Button submitButton;
+	[SerializeField] protected ToggleGroup answerGroup;
+    [SerializeField] protected PrefabData prefData;
+    protected MainCharacter owner;
     public float remainingTime { get; private set; } = 5.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +41,10 @@ public class QuizWindow : MonoBehaviour
 							}
 						}
                     }
+                    if (submitButton)
+                    {
+                        submitButton.onClick.AddListener(SubmitAnswer);
+                    }
 				}
             }
         }
@@ -49,10 +57,17 @@ public class QuizWindow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+	}
 
-    protected IEnumerator QuizTimer()
+	private void OnDestroy()
+	{
+		if (submitButton)
+		{
+			submitButton.onClick.RemoveListener(SubmitAnswer);
+		}
+	}
+
+	protected IEnumerator QuizTimer()
     {
         while(remainingTime > 0.0f)
         {
@@ -61,13 +76,78 @@ public class QuizWindow : MonoBehaviour
             if(quizTimerText) quizTimerText.text = Mathf.CeilToInt(remainingTime).ToString();
 		}
 
-        EndQuiz();
+        EndQuiz("No answer submitted !", Color.white, false);
     }
 
-    public void EndQuiz()
+    public void setOwner(in MainCharacter inOwner)
     {
-		Time.timeScale = 1.0f;
-		Cursor.visible = false;
+        owner = inOwner;
+    }
+
+    protected void SubmitAnswer()
+    {
+        if (answerGroup)
+        {
+            foreach(Toggle answer in answerGroup.ActiveToggles())
+            {
+				if (answer.isOn)
+				{
+                    TextMeshProUGUI toggleLabel = answer.GetComponentInChildren<TextMeshProUGUI>();
+                    if (toggleLabel)
+                    {
+                        string realAnswer = toggleLabel.text.Remove(0, 3);
+                        realAnswer = realAnswer.TrimStart(' ');
+						realAnswer = realAnswer.TrimEnd(' ');
+						DatabaseManager dbManager = DatabaseManager.instance;
+						if (dbManager)
+						{
+							QuizDatabase quizDb = dbManager.quizDb;
+							if (quizDb != null)
+							{
+                                string result = "";
+                                bool bIsCorrect = false;
+                                Color resultMessageColor;
+                                if (quizDb.SubmitAnswer(realAnswer))
+                                {
+                                    result = "Correct";
+                                    bIsCorrect = true;
+									resultMessageColor = Color.green;
+                                }
+                                else
+                                {
+									result = "Wrong answer";
+									bIsCorrect = false;
+									resultMessageColor = Color.red;
+								}
+								StopCoroutine(QuizTimer());
+                                EndQuiz(result, resultMessageColor, bIsCorrect);
+							}
+						}
+					}
+				}
+			}
+        }
+    }
+
+
+
+    public void EndQuiz(in string result, in Color resultMessageColor, in bool bIsCorrect)
+    {
+		if (prefData && prefData.screenMessagePref)
+		{
+			GameObject screenMessageUI = Instantiate(prefData.screenMessagePref);
+			if (screenMessageUI != null)
+			{
+				ScreenMessageUI screenMessage = screenMessageUI.GetComponent<ScreenMessageUI>();
+				if (screenMessage != null)
+				{
+					screenMessage.setScreenMessage(result);
+					screenMessage.setMessageTextColor(resultMessageColor);
+                    screenMessage.setCharacter(owner);
+                    screenMessage.setResult(bIsCorrect);
+				}
+			}
+		}
 		Destroy(gameObject);
     }
 
