@@ -17,8 +17,6 @@ public class MainSceneScript : MonoBehaviour
             curWave = gameProgress.curWave;
         }
         else curWave = 0;
-        RewardManager rewardManager = RewardManager.instance;
-        if (rewardManager) rewardManager.RewardProc();
 		SpawnWave();
         LoadCurScore();
 	}

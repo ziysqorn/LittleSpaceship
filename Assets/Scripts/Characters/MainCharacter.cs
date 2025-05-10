@@ -23,7 +23,6 @@ public class MainCharacter : BaseCharacter, IDamageable
     {
 		playerInput = GetComponent<PlayerInput>();
         Cursor.visible = false;
-        attackComp?.Attack();
     }
 
 	protected void OnEnable()
@@ -46,8 +45,12 @@ public class MainCharacter : BaseCharacter, IDamageable
 		attackComp = gameObject.GetComponent<AttackComponent>();
 		if (attackComp)
 		{
+			RangedAttack rangedAttack = new NormalShooting(gameObject, prefData.normalRocketPref);
+			rangedAttack.SetShootMode(new SingleShot());
+			attackComp.SetStrategy(rangedAttack);
 			attackComp.SetAttackSpeed(GameConstants.MainCharacter_AttackSpeed);
 			attackComp.SetDamage(GameConstants.MainCharacter_Damage);
+			attackComp.Attack();
 		}
 	}
 

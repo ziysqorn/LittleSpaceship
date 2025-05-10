@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PrefabData
   m_EditorClassIdentifier: 
   collectibleProcPrefs:
-  - {fileID: 3971974431720053439, guid: 85f9e6855639b1b43b49f0f3e3145a74, type: 3}
-  - {fileID: 8296305932523889636, guid: d60513e5d78c1804780704623a0f3040, type: 3}
-  - {fileID: 1695239048661662642, guid: 5972e2cf48ccd4d45b6d1dcdc0e0bc58, type: 3}
+  - {fileID: 4875267598861148061, guid: d836d8603bb12fe4fbdb3d692b632332, type: 3}
+  - {fileID: 8285233478000949321, guid: 7c6795bc24f18fb4e840875a7bce4ae3, type: 3}
+  - {fileID: 7253274598853518774, guid: c14354fd963e0c84f8471641b63d80bd, type: 3}
   klaedPrefs:
   - {fileID: 2684577330355360152, guid: 70fe20f1681ced94ea66d429151227ce, type: 3}
   - {fileID: 2808606683236107599, guid: 65da441e2f32db4418c953db1c81ec7d, type: 3}

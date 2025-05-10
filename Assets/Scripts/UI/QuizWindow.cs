@@ -13,7 +13,7 @@ public class QuizWindow : MonoBehaviour
 	[SerializeField] protected ToggleGroup answerGroup;
     [SerializeField] protected PrefabData prefData;
     protected MainCharacter owner;
-    public float remainingTime { get; private set; } = 5.0f;
+    public float remainingTime { get; private set; } = 10.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

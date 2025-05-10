@@ -18,6 +18,7 @@ public class NormalShooting : RangedAttack
 			if (character)
 			{
 				AttackComponent attackComponent = character.GetComponent<AttackComponent>();
+				attackComponent.StopAllCoroutines();
 				if (attackComponent) {
 					attackComponent.StartCoroutine(AttackLoop(attackComponent.AttackSpeed));
 				}
