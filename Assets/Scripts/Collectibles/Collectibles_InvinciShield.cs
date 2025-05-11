@@ -19,15 +19,20 @@ public class CollectiblesInvinciShield : Collectibles
 	protected override void ApplyEffect(in GameObject appliedObj)
 	{
 		PoolManager manager = PoolManager.poolManager;
-		if (manager && prefData && prefData.shieldPref)
+		if (appliedObj && manager && prefData && prefData.shieldPref)
 		{
-			Shield shield = prefData.shieldPref.GetComponent<Shield>();
-			if (shield)
+			Shield oldShield = appliedObj.GetComponentInChildren<Shield>();
+			if (oldShield == null)
 			{
-				if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
-				GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
-				if (newShield) newShield.transform.parent = transform;
+				Shield shield = prefData.shieldPref.GetComponent<Shield>();
+				if (shield)
+				{
+					if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
+					GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, appliedObj.transform.position, appliedObj.transform.rotation);
+					if (newShield) newShield.transform.parent = appliedObj.transform;
+				}
 			}
+			else oldShield.DelayDisableShield(3.0f);
 		}
 	}
 }

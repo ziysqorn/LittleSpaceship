@@ -14,13 +14,18 @@ public class Shield : MonoBehaviour
 
 	protected void OnEnable()
 	{
-        Invoke("DisableShield", 3.0f);
+        DelayDisableShield(3.0f);
 	}
 
 	// Update is called once per frame
 	void Update()
     {
         
+    }
+
+    public void DelayDisableShield(float inDelay)
+    {
+        Invoke("DisableShield", inDelay);
     }
 
     protected void DisableShield()
