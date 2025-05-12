@@ -9,7 +9,7 @@ public class MainCharacter : BaseCharacter, IDamageable
 {
     protected float Speed;
     protected AttackComponent attackComp;
-	[SerializeField] protected PrefabData prefData;
+	[SerializeField] public PrefabData prefData;
 
 	protected PlayerInput playerInput;
 
@@ -93,9 +93,14 @@ public class MainCharacter : BaseCharacter, IDamageable
 		}
 	}
 
-	public void Hurt()
+	public bool Hurt()
 	{
 		--CurrentHealth;
+		HUD playerHUD = FindFirstObjectByType<HUD>();
+		if (playerHUD)
+		{
+			playerHUD.DecreaseHeart();
+		}
 		if (CurrentHealth <= 0)
 		{
 			if (!bIsDead)
@@ -104,13 +109,9 @@ public class MainCharacter : BaseCharacter, IDamageable
 				bIsDead = true;
 				Instantiate(prefData.tryAgainMenuPref);
 				Destroy(gameObject);
-				return;
 			}
 		}
-		HUD playerHUD = FindFirstObjectByType<HUD>();
-		if (playerHUD)
-		{
-			playerHUD.DecreaseHeart();
-		}
+		else bIsDead = false;
+		return bIsDead;
 	}
 }

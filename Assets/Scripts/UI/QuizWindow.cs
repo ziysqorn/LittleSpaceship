@@ -23,7 +23,7 @@ public class QuizWindow : MonoBehaviour
             QuizDatabase quizDb = dbManager.quizDb;
             if (quizDb != null)
             {
-                QuizObject quizObj = quizDb.ChooseRandom("Math");
+                QuizObject quizObj = quizDb.ChooseRandom("Science");
                 if (quizObj != null) {
                     if (quizQuestionText)
                     {

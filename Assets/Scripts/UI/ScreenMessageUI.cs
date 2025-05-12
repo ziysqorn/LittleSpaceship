@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using TreeEditor;
 using UnityEngine;
 
 public class ScreenMessageUI : MonoBehaviour
@@ -28,10 +29,25 @@ public class ScreenMessageUI : MonoBehaviour
 		}
 		Time.timeScale = 1.0f;
 		Cursor.visible = false;
+        bool bIsCharacterDead = false;
         if (!result && character)
         {
-            character.Hurt();
+            bIsCharacterDead = character.Hurt();
         }
+        if (!bIsCharacterDead)
+        {
+			if (character && character.prefData && character.prefData.shieldPref)
+			{
+				PoolManager manager = PoolManager.poolManager;
+				Shield shield = character.prefData.shieldPref.GetComponent<Shield>();
+				if (shield)
+				{
+					if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(character.prefData.shieldPref));
+					GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, character.gameObject.transform.position, character.gameObject.transform.rotation);
+					if (newShield) newShield.transform.parent = character.gameObject.transform;
+				}
+			}
+		}
 		Destroy(gameObject);
 	}
 
