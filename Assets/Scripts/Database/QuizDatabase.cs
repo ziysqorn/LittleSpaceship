@@ -16,7 +16,6 @@ public class QuizDatabase
 		string textContent = quizFile.text;
 		if (textContent != "")
 		{
-			Debug.Log("Haha");
 			JArray jArray = JArray.Parse(textContent);
 			foreach (JObject quiz in jArray)
 			{
