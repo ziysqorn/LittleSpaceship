@@ -99,7 +99,7 @@ public class MainCharacter : BaseCharacter, IDamageable
 		HUD playerHUD = FindFirstObjectByType<HUD>();
 		if (playerHUD)
 		{
-			playerHUD.DecreaseHeart();
+			playerHUD.UpdateHeart(false);
 		}
 		if (CurrentHealth <= 0)
 		{
@@ -113,5 +113,26 @@ public class MainCharacter : BaseCharacter, IDamageable
 		}
 		else bIsDead = false;
 		return bIsDead;
+	}
+
+	public bool setHealth(int inHealth)
+	{
+		int updatedHealth = CurrentHealth + inHealth;
+
+		if (updatedHealth > 0 && updatedHealth <= MaxHealth)
+		{
+			HUD playerHUD = FindFirstObjectByType<HUD>();
+			if (updatedHealth > CurrentHealth)
+			{
+				if (playerHUD) playerHUD.UpdateHeart(true);
+			}
+			else
+			{
+				if (playerHUD) playerHUD.UpdateHeart(false);
+			}
+			CurrentHealth = updatedHealth;
+			return true;
+		}
+		return false;
 	}
 }

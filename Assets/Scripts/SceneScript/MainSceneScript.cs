@@ -46,6 +46,11 @@ public class MainSceneScript : MonoBehaviour
         }
     }
 
+    public void setScore(int score)
+    {
+        curScore = score;
+    }
+
     public void IncreaseCurWave()
     {
         ++curWave;

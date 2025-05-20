@@ -29,21 +29,29 @@ public class HUD : MonoBehaviour
         txt_Score.text = score.ToString();
     }
 
-    public void DecreaseHeart()
+    public void UpdateHeart(bool isIncreased)
     {
         if (panel)
         {
-            int childNum = panel.transform.childCount;
-            if(childNum >= 0)
+            if (!isIncreased)
             {
-                GameObject lastChild = panel.transform.GetChild(childNum - 1).gameObject;
-                lastChild.transform.SetParent(null, false);
-                Destroy(lastChild);
-            }
+				int childNum = panel.transform.childCount;
+				if (childNum >= 0)
+				{
+					GameObject lastChild = panel.transform.GetChild(childNum - 1).gameObject;
+					lastChild.transform.SetParent(null, false);
+					Destroy(lastChild);
+				}
+			}
+            else
+            {
+				GameObject newHeart = Instantiate(prefData.heartPref);
+				newHeart.transform.SetParent(panel.transform, false);
+			}
 		}
     }
 
-    public void LoadHeart(int heart)
+	public void LoadHeart(int heart)
     {
         if (prefData)
         {

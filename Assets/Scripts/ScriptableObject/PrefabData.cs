@@ -20,4 +20,6 @@ public class PrefabData : ScriptableObject
 	public GameObject quizDialogWindowPref;
 	public GameObject screenMessagePref;
 	public GameObject heartPref;
+	public GameObject upgradeWindowPref;
+	public GameObject dialogBoxPref;
 }

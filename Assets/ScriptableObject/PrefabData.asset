@@ -45,3 +45,5 @@ MonoBehaviour:
   quizDialogWindowPref: {fileID: 8616015110731186524, guid: 9b14a760e33a421459e03cf150eaadd7, type: 3}
   screenMessagePref: {fileID: 2000329336056843976, guid: 0b05ddcbc6cd07e4db5e47de089dc647, type: 3}
   heartPref: {fileID: 3279678970414951764, guid: de411baa3e23efb419ec6e618f1c3899, type: 3}
+  upgradeWindowPref: {fileID: 4061255274814558770, guid: 297d924665b96754cb7b8465d6f1a984, type: 3}
+  dialogBoxPref: {fileID: 1387643802501296528, guid: 5bb3fb5168242a349b08c9bb08c33970, type: 3}

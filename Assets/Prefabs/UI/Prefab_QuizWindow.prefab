@@ -2728,6 +2728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8076914910949374328}
   - component: {fileID: 1007038220316053079}
+  - component: {fileID: 7722537435557252100}
   m_Layer: 0
   m_Name: Prefab_QuizWindow
   m_TagString: Untagged
@@ -2769,6 +2770,18 @@ MonoBehaviour:
   submitButton: {fileID: 4609987036361026875}
   answerGroup: {fileID: 1838495276655788102}
   prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
+--- !u!225 &7722537435557252100
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616015110731186524}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8625713649056531490
 GameObject:
   m_ObjectHideFlags: 0
