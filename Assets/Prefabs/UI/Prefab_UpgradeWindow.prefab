@@ -1173,7 +1173,7 @@ GameObject:
   - component: {fileID: 2187848964225422829}
   - component: {fileID: 6202832895422915049}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: txt_weaponName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1196,7 +1196,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 183.405, y: 0}
+  m_SizeDelta: {x: 177.8015, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2187848964225422829
 CanvasRenderer:
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weapon
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8b37177216b60e429ea0cd5dabe991d, type: 2}
   m_sharedMaterial: {fileID: 6084896751843834502, guid: f8b37177216b60e429ea0cd5dabe991d, type: 2}
@@ -1578,15 +1578,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76553a88e9443a54b931f8a7e6fcd32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponIcon: {fileID: 0}
+  img_weaponIcon: {fileID: 4337734950407780820}
   txt_Score: {fileID: 4825581878642673148}
+  txt_weaponName: {fileID: 6202832895422915049}
   txt_weaponPrice: {fileID: 3600297934434077886}
   txt_healthPrice: {fileID: 7555044057260676305}
   btn_Upgrade: {fileID: 6332831186442807761}
   btn_BuyHealth: {fileID: 9172153983644608796}
   btn_Done: {fileID: 7289181270585089058}
-  priceSection: {fileID: 6112766924305195205}
+  weaponPriceSection: {fileID: 0}
   prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
+  weaponIcons:
+  - {fileID: 1161604956373862266, guid: 976dddb2338a410458665693c073dcf0, type: 3}
+  - {fileID: 21300000, guid: db05eb3f92898ea42b51208d9cb5f501, type: 3}
+  - {fileID: 21300000, guid: db05eb3f92898ea42b51208d9cb5f501, type: 3}
 --- !u!225 &590987820317224676
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2589,7 +2594,7 @@ GameObject:
   - component: {fileID: 555009075183101823}
   - component: {fileID: 4337734950407780820}
   m_Layer: 5
-  m_Name: Image
+  m_Name: img_weaponIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

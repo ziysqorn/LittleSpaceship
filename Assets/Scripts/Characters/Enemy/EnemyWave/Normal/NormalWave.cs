@@ -18,8 +18,9 @@ public abstract class NormalWave : EnemyWave
     {
 		if (prefData && gameObject && usedPrefList != null)
 		{
-			enemyNum = gameObject.transform.childCount;
-			for (int i = 0; i < gameObject.transform.childCount; ++i)
+			//enemyNum = gameObject.transform.childCount;
+			enemyNum = 1;
+			for (int i = 0; i < enemyNum; ++i)
 			{
 				GameObject child = gameObject.transform.GetChild(i).gameObject;
 				PoolManager manager = PoolManager.poolManager;

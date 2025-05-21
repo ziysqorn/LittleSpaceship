@@ -6,16 +6,19 @@ using UnityEngine.UI;
 
 public class UpgradeWindow : MonoBehaviour
 {
-    [SerializeField] Sprite weaponIcon;
+    [SerializeField] Image img_weaponIcon;
     [SerializeField] TextMeshProUGUI txt_Score;
+    [SerializeField] TextMeshProUGUI txt_weaponName;
     [SerializeField] TextMeshProUGUI txt_weaponPrice;
     [SerializeField] TextMeshProUGUI txt_healthPrice;
     [SerializeField] Button btn_Upgrade;
     [SerializeField] Button btn_BuyHealth;
     [SerializeField] Button btn_Done;
-    [SerializeField] GameObject priceSection;
+    [SerializeField] GameObject weaponPriceSection;
 	[SerializeField] PrefabData prefData;
+	[SerializeField] List<Sprite> weaponIcons;
 	int HealthPrice = 50;
+    int currentWeaponIdx = 0;
     List<KeyValuePair<string, int>> weapons;
     Dictionary<string, int> weaponLevels = new Dictionary<string, int>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,8 +28,8 @@ public class UpgradeWindow : MonoBehaviour
         weaponLevels.Add("ArmorPierce", 1);
         weaponLevels.Add("LaserBeam", 2);
         weapons = new List<KeyValuePair<string, int>> {
-            new KeyValuePair<string, int>("ArmorPierce", 800),
-            new KeyValuePair<string, int>("LaserBeam", 1600),
+            new KeyValuePair<string, int>("Armor Pierce", 800),
+            new KeyValuePair<string, int>("Laser Beam", 1600),
             new KeyValuePair<string, int>("Max", 0)
             };
 		//
@@ -43,6 +46,9 @@ public class UpgradeWindow : MonoBehaviour
         {
             txt_healthPrice.text = HealthPrice.ToString();
         }
+        //
+        SetupWeaponInfo();
+
         //
         Time.timeScale = 0.0f;
         Cursor.visible = true;
@@ -82,6 +88,28 @@ public class UpgradeWindow : MonoBehaviour
     {
         
     }
+
+    protected void SetupWeaponInfo()
+    {
+        SavedCurrentWeapon savedCurrentWeapon = GameplayStatics.LoadGame<SavedCurrentWeapon>("SavedCurrentWeapon.space");
+        if(savedCurrentWeapon != null)
+        {
+            if (weaponLevels.ContainsKey(savedCurrentWeapon.currentWeapon))
+            {
+                currentWeaponIdx = weaponLevels[savedCurrentWeapon.currentWeapon];
+            }
+        }
+        else
+        {
+            currentWeaponIdx = 0;
+        }
+        if (txt_weaponName)
+            txt_weaponName.text = weapons[currentWeaponIdx].Key;
+        if (txt_weaponPrice)
+			txt_weaponPrice.text = weapons[currentWeaponIdx].Value.ToString();
+        if (img_weaponIcon)
+            img_weaponIcon.sprite = weaponIcons[currentWeaponIdx];
+	}
 
     protected void BuyHealth()
     {
@@ -134,11 +162,11 @@ public class UpgradeWindow : MonoBehaviour
 		if (mainSceneScript)
 		{
 			mainSceneScript.UpdateScore(-amount);
-			ScoreboardSave scoreboardSave = GameplayStatics.LoadGame<ScoreboardSave>("ScoreboardSave.space");
-			if (scoreboardSave == null) scoreboardSave = new ScoreboardSave();
-			scoreboardSave.curScore = mainSceneScript.curScore;
-            txt_Score.text = mainSceneScript.curScore.ToString();
-			GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
+			//ScoreboardSave scoreboardSave = GameplayStatics.LoadGame<ScoreboardSave>("ScoreboardSave.space");
+			//if (scoreboardSave == null) scoreboardSave = new ScoreboardSave();
+			//scoreboardSave.curScore = mainSceneScript.curScore;
+			//GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
+			txt_Score.text = mainSceneScript.curScore.ToString();
 		}
 	}
 
