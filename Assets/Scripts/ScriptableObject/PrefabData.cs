@@ -22,4 +22,6 @@ public class PrefabData : ScriptableObject
 	public GameObject heartPref;
 	public GameObject upgradeWindowPref;
 	public GameObject dialogBoxPref;
+	public GameObject armorPiercePref;
+	public GameObject laserBeamPref;
 }

@@ -7,6 +7,17 @@ public abstract class RangedAttack : IAttackStrategy
 	protected GameObject owner;
 	protected GameObject projectile;
 	protected int currentMode = 1;
+
+	public RangedAttack()
+	{
+
+	}
+	public RangedAttack(in GameObject owner, in GameObject projectile)
+	{
+		this.owner = owner;
+		this.projectile = projectile;
+	}
+
 	public abstract void Attack();
 	public abstract void UpdateCurMode();
 	public int IncreaseCurMode(in string collectedProcName)

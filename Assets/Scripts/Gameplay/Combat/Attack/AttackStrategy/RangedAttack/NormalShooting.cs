@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class NormalShooting : RangedAttack
 {
-	public NormalShooting(in GameObject owner, in GameObject projectile)
+	public NormalShooting()
 	{
-		this.owner = owner;
-		this.projectile = projectile;
+
+	}
+
+	public NormalShooting(in GameObject owner, in GameObject projectile) : base(owner, projectile)
+	{
+
 	}
 
 	public override void Attack()

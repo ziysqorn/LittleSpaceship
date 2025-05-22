@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class BeamShooting : RangedAttack
 {
-	public BeamShooting(in GameObject owner, in GameObject projectile)
+
+	public BeamShooting()
 	{
-		this.owner = owner;
-		this.projectile = projectile;
+
+	}
+
+	public BeamShooting(in GameObject owner, in GameObject projectile) : base(owner, projectile)
+	{
 	}
 
 	public override void Attack()

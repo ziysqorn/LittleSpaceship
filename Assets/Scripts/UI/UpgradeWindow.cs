@@ -17,6 +17,7 @@ public class UpgradeWindow : MonoBehaviour
     [SerializeField] GameObject weaponPriceSection;
 	[SerializeField] PrefabData prefData;
 	[SerializeField] List<Sprite> weaponIcons;
+    protected List<KeyValuePair<Type, GameObject>> weaponTypes;
 	int HealthPrice = 50;
     int currentWeaponIdx = 0;
     List<KeyValuePair<string, int>> weapons;
@@ -28,10 +29,18 @@ public class UpgradeWindow : MonoBehaviour
         weaponLevels.Add("ArmorPierce", 1);
         weaponLevels.Add("LaserBeam", 2);
         weapons = new List<KeyValuePair<string, int>> {
-            new KeyValuePair<string, int>("Armor Pierce", 800),
-            new KeyValuePair<string, int>("Laser Beam", 1600),
+            new KeyValuePair<string, int>("Armor Pierce", 0),
+            new KeyValuePair<string, int>("Laser Beam", 0),
             new KeyValuePair<string, int>("Max", 0)
             };
+        if(prefData && prefData.armorPiercePref && prefData.laserBeamPref)
+        {
+			weaponTypes = new List<KeyValuePair<Type, GameObject>> {
+			new KeyValuePair<Type, GameObject>(typeof(NormalShooting), prefData.armorPiercePref),
+			new KeyValuePair<Type, GameObject>(typeof(BeamShooting), prefData.laserBeamPref),
+			new KeyValuePair<Type, GameObject>(null, null)
+			};
+		}
 		//
 		if (btn_Done != null) btn_Done.onClick.AddListener(CloseWindow);
         if (btn_Upgrade != null) btn_Upgrade.onClick.AddListener(UpgradeWeapon);
@@ -86,8 +95,36 @@ public class UpgradeWindow : MonoBehaviour
 
     protected void UpgradeWeapon()
     {
-        
-    }
+		MainCharacter mainCharacter = FindFirstObjectByType<MainCharacter>();
+		if (mainCharacter)
+		{
+			string result = "";
+			if (checkAbleToBuy(weapons[currentWeaponIdx].Value))
+			{
+                AttackComponent attackComponent = mainCharacter.GetComponent<AttackComponent>();
+                if (attackComponent != null) {
+                    RangedAttack rangedAttack = (RangedAttack)Activator.CreateInstance(weaponTypes[currentWeaponIdx].Key, mainCharacter.gameObject, weaponTypes[currentWeaponIdx].Value);
+                    rangedAttack.SetCurMode(1);
+                    rangedAttack.UpdateCurMode();
+                    attackComponent.SetStrategy(rangedAttack);
+					attackComponent?.Attack();
+					++currentWeaponIdx;
+                    UpdateWeaponInfo();
+					result = "Weapon upgraded !";
+				}
+			}
+			else result = "Not enough score to buy !";
+			if (prefData && prefData.dialogBoxPref)
+			{
+				GameObject GB_dialogBox = Instantiate(prefData.dialogBoxPref);
+				DialogBox dialogBox = GB_dialogBox.GetComponent<DialogBox>();
+				dialogBox?.setMessageText(result);
+				UIManager uiManager = FindFirstObjectByType<UIManager>();
+				uiManager?.addUI(GB_dialogBox);
+			}
+
+		}
+	}
 
     protected void SetupWeaponInfo()
     {
@@ -103,13 +140,30 @@ public class UpgradeWindow : MonoBehaviour
         {
             currentWeaponIdx = 0;
         }
-        if (txt_weaponName)
-            txt_weaponName.text = weapons[currentWeaponIdx].Key;
-        if (txt_weaponPrice)
-			txt_weaponPrice.text = weapons[currentWeaponIdx].Value.ToString();
-        if (img_weaponIcon)
-            img_weaponIcon.sprite = weaponIcons[currentWeaponIdx];
+        UpdateWeaponInfo();
 	}
+
+    protected void UpdateWeaponInfo()
+    {
+		if (btn_Upgrade) btn_Upgrade.interactable = true;
+		if (weaponPriceSection)
+			weaponPriceSection.SetActive(true);
+		if (txt_weaponName)
+			txt_weaponName.text = weapons[currentWeaponIdx].Key;
+		if (img_weaponIcon)
+			img_weaponIcon.sprite = weaponIcons[currentWeaponIdx];
+		if (currentWeaponIdx == weapons.Count - 1)
+        {
+			if (btn_Upgrade) btn_Upgrade.interactable = false;
+            if (weaponPriceSection)
+                weaponPriceSection.SetActive(false);
+		}
+        else
+        {
+			if (txt_weaponPrice)
+				txt_weaponPrice.text = weapons[currentWeaponIdx].Value.ToString();
+		}
+    }
 
     protected void BuyHealth()
     {

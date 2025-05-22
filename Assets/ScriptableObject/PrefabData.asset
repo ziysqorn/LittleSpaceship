@@ -47,3 +47,5 @@ MonoBehaviour:
   heartPref: {fileID: 3279678970414951764, guid: de411baa3e23efb419ec6e618f1c3899, type: 3}
   upgradeWindowPref: {fileID: 4061255274814558770, guid: 297d924665b96754cb7b8465d6f1a984, type: 3}
   dialogBoxPref: {fileID: 1387643802501296528, guid: 5bb3fb5168242a349b08c9bb08c33970, type: 3}
+  armorPiercePref: {fileID: 3818014938509024116, guid: cee811af41848634b902526b8114c36f, type: 3}
+  laserBeamPref: {fileID: 4230232307610843581, guid: 08b8109369a404c4bb77ede8a8fd6b37, type: 3}
