@@ -117,7 +117,7 @@ public class UpgradeWindow : MonoBehaviour
                     rangedAttack.SetCurMode(1);
                     rangedAttack.UpdateCurMode();
                     attackComponent.SetStrategy(rangedAttack);
-                    currentWeapon = weapons[currentWeaponIdx].Key.Trim(' ');
+                    currentWeapon = weapons[currentWeaponIdx].Key.Replace(" ", "");
 					++currentWeaponIdx;
                     UpdateWeaponInfo();
 					result = "Weapon upgraded !";
@@ -132,7 +132,6 @@ public class UpgradeWindow : MonoBehaviour
 				UIManager uiManager = FindFirstObjectByType<UIManager>();
 				uiManager?.addUI(GB_dialogBox);
 			}
-
 		}
 	}
 

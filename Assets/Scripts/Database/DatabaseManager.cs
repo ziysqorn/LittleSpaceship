@@ -9,6 +9,10 @@ public class DatabaseManager : MonoBehaviour
 
 	void Awake()
 	{
+	}
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
+    {
 		if (instance == null)
 		{
 			instance = this;
@@ -17,10 +21,6 @@ public class DatabaseManager : MonoBehaviour
 			DontDestroyOnLoad(gameObject);
 		}
 	}
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()

@@ -23,6 +23,7 @@ public class BeamShooting : RangedAttack
 				AttackComponent attackComponent = character.GetComponent<AttackComponent>();
 				if (attackComponent)
 				{
+					attackComponent.StopAllCoroutines();
 					shootMode?.Shoot(owner, projectile);
 				}
 			}
