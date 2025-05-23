@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class CombatDatabase
 {
-	Dictionary<string, Type> atkStrategyMap = new Dictionary<string, Type>();
-	Dictionary<string, Type> shootingModeMap = new Dictionary<string, Type>();	
+	Dictionary<string, KeyValuePair<Type, GameObject>> atkStrategyMap = new Dictionary<string, KeyValuePair<Type, GameObject>>();
 
 	public CombatDatabase()
 	{
-		atkStrategyMap.Add("NormalShooting", typeof(NormalShooting));
-		atkStrategyMap.Add("BeamShooting", typeof(BeamShooting));
-		shootingModeMap.Add("SingleShot", typeof(SingleShot));
-		shootingModeMap.Add("DoubleShot", typeof(DoubleShot));
-		shootingModeMap.Add("TripleShot", typeof(TripleShot));
-		shootingModeMap.Add("SingleBeam", typeof(SingleBeam));
-		shootingModeMap.Add("DoubleBeam", typeof(DoubleBeam));
-		shootingModeMap.Add("TripleBeam", typeof(TripleBeam));
+
+	}
+
+	public CombatDatabase(in PrefabData prefData)
+	{
+		if (prefData && prefData.normalRocketPref && prefData.armorPiercePref && prefData.laserBeamPref)
+		{
+			atkStrategyMap.Add("NormalRocket", new KeyValuePair<Type, GameObject>(typeof(NormalShooting), prefData.normalRocketPref));
+			atkStrategyMap.Add("ArmorPierce", new KeyValuePair<Type, GameObject>(typeof(NormalShooting), prefData.armorPiercePref));
+			atkStrategyMap.Add("LaserBeam", new KeyValuePair<Type, GameObject>(typeof(BeamShooting), prefData.laserBeamPref));
+		}
+	}
+
+	public KeyValuePair<Type, GameObject>? getAtkStrategy(in string inStrategyName)
+	{
+		if (atkStrategyMap.ContainsKey(inStrategyName))
+		{
+			return atkStrategyMap[inStrategyName];
+		}
+		return null;
 	}
 }

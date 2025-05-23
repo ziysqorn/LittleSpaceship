@@ -38,7 +38,9 @@ public class MainMenu : MonoBehaviour
 		}
         GameplayStatics.DeleteSaveGame("GameProgress.space");
 		GameplayStatics.DeleteSaveGame("PlayerInfo.space");
-        GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
+		GameplayStatics.DeleteSaveGame("QuizHistory.space");
+		GameplayStatics.DeleteSaveGame("SavedCurrentWeapon.space");
+		GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
         SceneManager.LoadScene("MainScene");
     }
 

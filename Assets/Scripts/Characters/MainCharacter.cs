@@ -4,6 +4,7 @@ using System.Collections;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Game.Interfaces;
+using System;
 
 public class MainCharacter : BaseCharacter, IDamageable
 {
@@ -43,14 +44,30 @@ public class MainCharacter : BaseCharacter, IDamageable
 		bIsDead = false; 
 
 		attackComp = gameObject.GetComponent<AttackComponent>();
+		SavedCurrentWeapon savedCurrentWeapon = GameplayStatics.LoadGame<SavedCurrentWeapon>("SavedCurrentWeapon.space");
+		if (savedCurrentWeapon == null)
+		{
+			savedCurrentWeapon = new SavedCurrentWeapon();
+			savedCurrentWeapon.currentWeapon = "NormalRocket";
+			GameplayStatics.SaveGame(savedCurrentWeapon, "SavedCurrentWeapon.space");
+		}
 		if (attackComp)
 		{
-			RangedAttack rangedAttack = new NormalShooting(gameObject, prefData.normalRocketPref);
-			rangedAttack.SetShootMode(new SingleShot());
-			attackComp.SetStrategy(rangedAttack);
-			attackComp.SetAttackSpeed(GameConstants.MainCharacter_AttackSpeed);
-			attackComp.SetDamage(GameConstants.MainCharacter_Damage);
-			attackComp.Attack();
+			DatabaseManager dbManager = FindAnyObjectByType<DatabaseManager>();
+			if (dbManager)
+			{
+				CombatDatabase combatDb = dbManager.combatDb;
+				if (combatDb != null && combatDb.getAtkStrategy(savedCurrentWeapon.currentWeapon).HasValue) {
+					KeyValuePair<Type, GameObject> atkStrategy = combatDb.getAtkStrategy(savedCurrentWeapon.currentWeapon).Value;
+					RangedAttack rangedAttack = (RangedAttack)Activator.CreateInstance(atkStrategy.Key, gameObject, atkStrategy.Value);
+					rangedAttack.SetCurMode(1);
+					rangedAttack.UpdateCurMode();
+					attackComp.SetStrategy(rangedAttack);
+					attackComp.SetAttackSpeed(GameConstants.MainCharacter_AttackSpeed);
+					attackComp.SetDamage(GameConstants.MainCharacter_Damage);
+					attackComp.Attack();
+				}
+			}
 		}
 	}
 

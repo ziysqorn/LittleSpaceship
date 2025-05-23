@@ -18,6 +18,7 @@ public class UpgradeWindow : MonoBehaviour
 	[SerializeField] PrefabData prefData;
 	[SerializeField] List<Sprite> weaponIcons;
     protected List<KeyValuePair<Type, GameObject>> weaponTypes;
+    protected string currentWeapon = "";
 	int HealthPrice = 50;
     int currentWeaponIdx = 0;
     List<KeyValuePair<string, int>> weapons;
@@ -74,8 +75,10 @@ public class UpgradeWindow : MonoBehaviour
 		mainScene.IncreaseCurWave();
 		PlayerInfo playerInfo = GameplayStatics.LoadGame<PlayerInfo>("PlayerInfo.space");
         ScoreboardSave scoreboardSave = GameplayStatics.LoadGame<ScoreboardSave>("ScoreboardSave.space");
+        SavedCurrentWeapon savedCurrentWeapon = GameplayStatics.LoadGame<SavedCurrentWeapon>("SavedCurrentWeapon.space");
 		if (playerInfo == null) playerInfo = new PlayerInfo();
         if (scoreboardSave == null) scoreboardSave = new ScoreboardSave();
+        if (savedCurrentWeapon == null) savedCurrentWeapon = new SavedCurrentWeapon();
 		MainCharacter mainCharacter = FindFirstObjectByType<MainCharacter>();
 		if (mainCharacter)
 		{
@@ -88,8 +91,15 @@ public class UpgradeWindow : MonoBehaviour
             scoreboardSave.curScore = mainSceneScript.curScore;
 			GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
 		}
+        savedCurrentWeapon.currentWeapon = currentWeapon;
+        GameplayStatics.SaveGame(savedCurrentWeapon, "SavedCurrentWeapon.space");
 		UIManager uiManager = FindFirstObjectByType<UIManager>();
 		uiManager?.popOutUI();
+        if (mainCharacter)
+        {
+			AttackComponent attackComponent = mainCharacter.GetComponent<AttackComponent>();
+			attackComponent?.Attack();
+		}
 		Destroy(gameObject);
     }
 
@@ -107,7 +117,7 @@ public class UpgradeWindow : MonoBehaviour
                     rangedAttack.SetCurMode(1);
                     rangedAttack.UpdateCurMode();
                     attackComponent.SetStrategy(rangedAttack);
-					attackComponent?.Attack();
+                    currentWeapon = weapons[currentWeaponIdx].Key.Trim(' ');
 					++currentWeaponIdx;
                     UpdateWeaponInfo();
 					result = "Weapon upgraded !";
