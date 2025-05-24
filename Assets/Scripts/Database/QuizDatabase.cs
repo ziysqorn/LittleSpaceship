@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 public class QuizDatabase
 {
     protected Dictionary<string, List<QuizObject>> quizMap = new Dictionary<string, List<QuizObject>>();
+	protected List<QuizObject> quizList = new List<QuizObject>();
 	protected QuizObject currentQuiz;
 	protected int currentLevel;
 	protected HashSet<string> askedQuestionSet = new HashSet<string>();
@@ -20,16 +21,15 @@ public class QuizDatabase
 			foreach (JObject quiz in jArray)
 			{
 				string quizTopic = (string)quiz["topic"];
-				int quizLevel = (int)quiz["level"];
 				string quizQuestion = (string)quiz["question"];
 				string quizRightAnswer = (string)quiz["rightAnswer"];
-				QuizObject quizObj = new QuizObject(quizTopic, quizLevel, quizQuestion, quizRightAnswer, quiz["answers"].ToObject<List<string>>());
+				QuizObject quizObj = new QuizObject(quizTopic, quizQuestion, quizRightAnswer, quiz["answers"].ToObject<List<string>>());
 				AddQuiz(quizObj.topic, quizObj);
+				quizList.Add(quizObj);
 			}
 			QuizHistory quizHistory = GameplayStatics.LoadGame<QuizHistory>("QuizHistory.space");
 			if(quizHistory != null)
 			{
-				currentLevel = quizHistory.currentLevel;
 				foreach(string quizQuestion in quizHistory.completedQuiz)
 				{
 					if (!askedQuestionSet.Contains(quizQuestion))
@@ -68,6 +68,35 @@ public class QuizDatabase
 		}
 		currentQuiz = null;
 		return null;
+	}
+
+	public List<QuizObject> getRandomQuizList(int quizCount)
+	{
+		List<QuizObject> list = new List<QuizObject>();
+		if (quizCount > 0)
+		{
+			int randomQuiz = Random.Range(0, quizList.Count);
+			int direction = Random.Range(0, 2);
+			if (direction == 0)
+			{
+				for (int i = 0; i < quizCount; ++i)
+				{
+					int idx = (randomQuiz + quizList.Count) % quizList.Count;
+					list.Add(quizList[idx]);
+					++randomQuiz;
+				}
+			}
+			else
+			{
+				for (int i = 0; i < quizCount; ++i)
+				{
+					int idx = randomQuiz % quizList.Count;
+					list.Add(quizList[idx]);
+					++randomQuiz;
+				}
+			}
+		}
+		return list;
 	}
 
 	public bool SubmitAnswer(in string inAnswer)

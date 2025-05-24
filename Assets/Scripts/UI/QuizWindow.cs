@@ -9,46 +9,22 @@ public class QuizWindow : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI quizTimerText;
 	[SerializeField] protected TextMeshProUGUI quizQuestionText;
     [SerializeField] protected GameObject toggleContainer;
-    [SerializeField] protected Button submitButton;
+    [SerializeField] protected Button btn_Summit;
+	[SerializeField] protected Button btn_prevQuestion;
+	[SerializeField] protected Button btn_nextQuestion;
 	[SerializeField] protected ToggleGroup answerGroup;
     [SerializeField] protected PrefabData prefData;
+    protected List<QuizObject> quizList;
+    protected int currentQuizIdx = 0;
     protected MainCharacter owner;
     public float remainingTime { get; private set; } = 10.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DatabaseManager dbManager = DatabaseManager.instance;
-        if (dbManager)
-        {
-            QuizDatabase quizDb = dbManager.quizDb;
-            if (quizDb != null)
-            {
-                QuizObject quizObj = quizDb.ChooseRandom("Science");
-                if (quizObj != null) {
-                    if (quizQuestionText)
-                    {
-                        quizQuestionText.text = "Question: " + quizObj.question;
-                    }
-                    for(int i = 0; i < toggleContainer.transform.childCount; ++i)
-                    {
-                        Toggle toggleAnswer = toggleContainer.transform.GetChild(i).GetComponent<Toggle>();
-                        if (toggleAnswer != null) {
-							char choiceLetter = (char)('A' + i);
-							TextMeshProUGUI toggleContent = toggleAnswer.GetComponentInChildren<TextMeshProUGUI>();
-							if (toggleContent != null)
-							{
-								toggleContent.text = choiceLetter + ". " + quizObj.answers[i];
-							}
-						}
-                    }
-                    if (submitButton)
-                    {
-                        submitButton.onClick.AddListener(SubmitAnswer);
-                    }
-				}
-            }
-        }
-        Time.timeScale = 0.0f;
+		if (btn_Summit) btn_Summit.onClick.AddListener(SubmitAnswer);
+		if (btn_prevQuestion) btn_prevQuestion.onClick.AddListener(PrevQuestion);
+		if (btn_nextQuestion) btn_nextQuestion.onClick.AddListener(NextQuestion);
+		Time.timeScale = 0.0f;
         Cursor.visible = true;
 		if (quizTimerText) quizTimerText.text = Mathf.CeilToInt(remainingTime).ToString();
 		StartCoroutine(QuizTimer());
@@ -59,11 +35,71 @@ public class QuizWindow : MonoBehaviour
     {
 	}
 
+    public void initQuizList(int quizCount)
+    {
+		DatabaseManager dbManager = DatabaseManager.instance;
+		if (dbManager)
+		{
+			QuizDatabase quizDb = dbManager.quizDb;
+            quizList = quizDb?.getRandomQuizList(quizCount);
+			fetchQuizInfo(currentQuizIdx);
+		}
+	}
+
+    protected void fetchQuizInfo(int currentIdx)
+    {
+		QuizObject quizObj = quizList[currentIdx];
+		if (quizObj != null)
+		{
+			if (quizQuestionText)
+			{
+				quizQuestionText.text = "Question: " + quizObj.question;
+			}
+			for (int i = 0; i < toggleContainer.transform.childCount; ++i)
+			{
+				Toggle toggleAnswer = toggleContainer.transform.GetChild(i).GetComponent<Toggle>();
+				if (toggleAnswer != null)
+				{
+					char choiceLetter = (char)('A' + i);
+					TextMeshProUGUI toggleContent = toggleAnswer.GetComponentInChildren<TextMeshProUGUI>();
+					if (toggleContent != null)
+					{
+						toggleContent.text = choiceLetter + ". " + quizObj.answers[i];
+					}
+				}
+			}
+		}
+		if(currentIdx == 0)
+		{
+			if (btn_prevQuestion) btn_prevQuestion.gameObject.SetActive(false);
+		}
+		else
+		{
+			if (btn_prevQuestion) btn_prevQuestion.gameObject.SetActive(true);
+		}
+		if(currentIdx == quizList.Count - 1)
+		{
+			if (btn_nextQuestion) btn_nextQuestion.gameObject.SetActive(false);
+		}
+		else
+		{
+			if (btn_nextQuestion) btn_nextQuestion.gameObject.SetActive(true);
+		}
+	}
+
 	private void OnDestroy()
 	{
-		if (submitButton)
+		if (btn_Summit)
 		{
-			submitButton.onClick.RemoveListener(SubmitAnswer);
+			btn_Summit.onClick.RemoveListener(SubmitAnswer);
+		}
+		if (btn_prevQuestion)
+		{
+			btn_prevQuestion.onClick.RemoveListener(PrevQuestion);
+		}
+		if (btn_nextQuestion)
+		{
+			btn_nextQuestion.onClick.RemoveListener(NextQuestion);
 		}
 	}
 
@@ -128,6 +164,18 @@ public class QuizWindow : MonoBehaviour
 			}
         }
     }
+
+	protected void PrevQuestion()
+	{
+		--currentQuizIdx;
+		fetchQuizInfo(currentQuizIdx);
+	}
+
+	protected void NextQuestion()
+	{
+		++currentQuizIdx;
+		fetchQuizInfo(currentQuizIdx);
+	}
 
 
 

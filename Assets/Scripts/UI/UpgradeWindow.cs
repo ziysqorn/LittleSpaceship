@@ -13,7 +13,8 @@ public class UpgradeWindow : MonoBehaviour
     [SerializeField] TextMeshProUGUI txt_healthPrice;
     [SerializeField] Button btn_Upgrade;
     [SerializeField] Button btn_BuyHealth;
-    [SerializeField] Button btn_Done;
+	[SerializeField] Button btn_DoQuiz;
+	[SerializeField] Button btn_Done;
     [SerializeField] GameObject weaponPriceSection;
 	[SerializeField] PrefabData prefData;
 	[SerializeField] List<Sprite> weaponIcons;
@@ -46,8 +47,9 @@ public class UpgradeWindow : MonoBehaviour
 		if (btn_Done != null) btn_Done.onClick.AddListener(CloseWindow);
         if (btn_Upgrade != null) btn_Upgrade.onClick.AddListener(UpgradeWeapon);
         if (btn_BuyHealth != null) btn_BuyHealth.onClick.AddListener(BuyHealth);
-        //
-        if (txt_Score)
+		if (btn_DoQuiz != null) btn_DoQuiz.onClick.AddListener(DoQuiz);
+		//
+		if (txt_Score)
         {
             MainSceneScript mainSceneScript = FindFirstObjectByType<MainSceneScript>();
             if (mainSceneScript) txt_Score.text = mainSceneScript.curScore.ToString();
@@ -207,6 +209,18 @@ public class UpgradeWindow : MonoBehaviour
         
     }
 
+    protected void DoQuiz()
+    {
+        if(prefData && prefData.quizDialogWindowPref)
+        {
+            GameObject GB_quizDialog = Instantiate(prefData.quizDialogWindowPref);
+            QuizWindow quizWindow = GB_quizDialog.GetComponent<QuizWindow>();
+            quizWindow?.initQuizList(15);
+            UIManager uIManager = FindFirstObjectByType<UIManager>();
+            uIManager?.addUI(GB_quizDialog);
+        }
+    }
+
     protected bool checkAbleToBuy(int price)
     {
         MainSceneScript mainSceneScript = FindFirstObjectByType<MainSceneScript>();
@@ -237,6 +251,8 @@ public class UpgradeWindow : MonoBehaviour
 	{
 		btn_Done.onClick.RemoveListener(CloseWindow);
 		btn_Upgrade.onClick.RemoveListener(UpgradeWeapon);
+		btn_BuyHealth.onClick.RemoveListener(BuyHealth);
+        btn_DoQuiz.onClick.RemoveListener(DoQuiz);
 	}
 
 	// Update is called once per frame

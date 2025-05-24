@@ -3164,7 +3164,9 @@ MonoBehaviour:
   quizTimerText: {fileID: 6968853926138183681}
   quizQuestionText: {fileID: 2654050571156403605}
   toggleContainer: {fileID: 8651272506024740117}
-  submitButton: {fileID: 4822351996941584513}
+  btn_Summit: {fileID: 4822351996941584513}
+  btn_prevQuestion: {fileID: 4609987036361026875}
+  btn_nextQuestion: {fileID: 2133846016583942892}
   answerGroup: {fileID: 1838495276655788102}
   prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
 --- !u!225 &7722537435557252100

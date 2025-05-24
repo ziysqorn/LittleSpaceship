@@ -1,38 +1,552 @@
 [
     {
-        "topic": "Math",
-        "level": 1,
-        "question": "What is 2 + 2?",
-        "rightAnswer": "4",
+        "topic": "Online Privacy",
+        "question": "What personal information should you never share online?",
+        "rightAnswer": "Your home address",
         "answers": [
-            "3",
-            "4",
-            "5",
-            "6"
+            "Your favorite color",
+            "Your pet's name",
+            "Your home address",
+            "Your favorite food"
         ]
     },
     {
-        "topic": "Science",
-        "level": 1,
-        "question": "What planet is known as the Red Planet?",
-        "rightAnswer": "Mars",
+        "topic": "Online Privacy",
+        "question": "Which of the following is a safe way to protect your online privacy?",
+        "rightAnswer": "Use privacy settings on social media",
         "answers": [
-            "Earth",
-            "Mars",
-            "Jupiter",
-            "Venus"
+            "Accept all friend requests",
+            "Use your real birthday for all accounts",
+            "Use privacy settings on social media",
+            "Post your location regularly"
         ]
     },
     {
-        "topic": "History",
-        "level": 1,
-        "question": "Who was the first president of the United States?",
-        "rightAnswer": "George Washington",
+        "topic": "Online Privacy",
+        "question": "If someone asks for your phone number online, what should you do?",
+        "rightAnswer": "Say no and tell a trusted adult",
         "answers": [
-            "Abraham Lincoln",
-            "George Washington",
-            "Thomas Jefferson",
-            "John Adams"
+            "Give it to them",
+            "Ask them for theirs first",
+            "Say no and tell a trusted adult",
+            "Only share it if they are nice"
+        ]
+    },
+    {
+        "topic": "Online Privacy",
+        "question": "What should you do before posting a photo online?",
+        "rightAnswer": "Check if it reveals private information",
+        "answers": [
+            "Make sure it looks good",
+            "Tag all your friends",
+            "Check if it reveals private information",
+            "Post it quickly"
+        ]
+    },
+    {
+        "topic": "Online Privacy",
+        "question": "What does 'private account' mean on social media?",
+        "rightAnswer": "Only approved people can see your posts",
+        "answers": [
+            "Everyone can see your posts",
+            "Only you can post pictures",
+            "Only approved people can see your posts",
+            "No one can comment on your posts"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "Which password is the most secure?",
+        "rightAnswer": "H@ppyD@y2025!",
+        "answers": [
+            "123456",
+            "password",
+            "H@ppyD@y2025!",
+            "qwerty"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "What should you do if you forget your password?",
+        "rightAnswer": "Ask a parent or teacher to help reset it",
+        "answers": [
+            "Stop using the account",
+            "Try guessing until it works",
+            "Ask a parent or teacher to help reset it",
+            "Make a new account with the same password"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "How often should you change your passwords?",
+        "rightAnswer": "Every few months",
+        "answers": [
+            "Never",
+            "Every few months",
+            "Once a year",
+            "Only if someone finds it out"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "What should you do if someone finds out your password?",
+        "rightAnswer": "Change it immediately",
+        "answers": [
+            "Do nothing",
+            "Share a new one with them",
+            "Change it immediately",
+            "Tell your friends"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "Is 'iloveyou' a strong password?",
+        "rightAnswer": "No, it's easy to guess",
+        "answers": [
+            "Yes, it's long",
+            "No, it's easy to guess",
+            "Yes, it's romantic",
+            "No, it's too hard to type"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "What should you do if someone is mean to you online?",
+        "rightAnswer": "Tell a trusted adult",
+        "answers": [
+            "Be mean back",
+            "Ignore it forever",
+            "Tell a trusted adult",
+            "Delete your account"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "What is cyberbullying?",
+        "rightAnswer": "Being hurtful to someone online",
+        "answers": [
+            "Making friends online",
+            "Being hurtful to someone online",
+            "Playing games online",
+            "Posting funny videos"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "If you see someone being bullied online, what should you do?",
+        "rightAnswer": "Support the person and report it",
+        "answers": [
+            "Join the bully",
+            "Ignore it",
+            "Support the person and report it",
+            "Share the post"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "Why is it wrong to share mean messages online?",
+        "rightAnswer": "It can hurt others' feelings",
+        "answers": [
+            "It\u2019s fun",
+            "Everyone does it",
+            "It can hurt others' feelings",
+            "No one will see it"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "Who can help you if you're being cyberbullied?",
+        "rightAnswer": "A parent, teacher, or trusted adult",
+        "answers": [
+            "Your bully",
+            "Strangers online",
+            "No one",
+            "A parent, teacher, or trusted adult"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "What is a good rule when using the internet?",
+        "rightAnswer": "Think before you click",
+        "answers": [
+            "Click everything quickly",
+            "Post all your photos",
+            "Think before you click",
+            "Believe everything you see"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "Why should you be careful when downloading games?",
+        "rightAnswer": "They might contain viruses",
+        "answers": [
+            "They are all safe",
+            "They take too long",
+            "They might contain viruses",
+            "They are boring"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "Is it safe to meet online friends in real life alone?",
+        "rightAnswer": "No, it\u2019s dangerous",
+        "answers": [
+            "Yes, if they are nice",
+            "No, it\u2019s dangerous",
+            "Only if you chat a lot",
+            "Yes, if they give you gifts"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "What should you do before clicking on a link?",
+        "rightAnswer": "Check if it's from a trusted source",
+        "answers": [
+            "Click and see what happens",
+            "Ask your friends",
+            "Ignore it",
+            "Check if it's from a trusted source"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "Why should you log out of accounts on shared computers?",
+        "rightAnswer": "To protect your personal information",
+        "answers": [
+            "To save battery",
+            "So others can\u2019t change your info",
+            "To protect your personal information",
+            "It\u2019s polite"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "What is a scam?",
+        "rightAnswer": "A trick to steal your information or money",
+        "answers": [
+            "A fun game",
+            "A message from a friend",
+            "A trick to steal your information or money",
+            "A computer program"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "If you get an email saying you won a prize, what should you do?",
+        "rightAnswer": "Delete it or tell an adult",
+        "answers": [
+            "Click the link",
+            "Send your information",
+            "Delete it or tell an adult",
+            "Reply and thank them"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "How can you tell if a website is fake?",
+        "rightAnswer": "It has spelling mistakes and asks for personal info",
+        "answers": [
+            "It looks fun",
+            "It has videos",
+            "It has spelling mistakes and asks for personal info",
+            "It loads fast"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "Why do scammers ask for your password?",
+        "rightAnswer": "To steal your account",
+        "answers": [
+            "To help you remember it",
+            "To play games for you",
+            "To steal your account",
+            "To fix your account"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "What should you do with strange messages with links?",
+        "rightAnswer": "Don\u2019t click and tell an adult",
+        "answers": [
+            "Click them quickly",
+            "Forward them to friends",
+            "Don\u2019t click and tell an adult",
+            "Ignore them and delete"
+        ]
+    },
+    {
+        "topic": "Online Privacy",
+        "question": "What should you do if a website asks for your home address?",
+        "rightAnswer": "Ask a parent before entering it",
+        "answers": [
+            "Enter it immediately",
+            "Ignore the website",
+            "Ask a parent before entering it",
+            "Tell a friend first"
+        ]
+    },
+    {
+        "topic": "Online Privacy",
+        "question": "Is it okay to share vacation plans online?",
+        "rightAnswer": "No, it may tell strangers when you're not home",
+        "answers": [
+            "Yes, it\u2019s fun to share",
+            "No, it may tell strangers when you're not home",
+            "Only with friends",
+            "If it\u2019s a short trip"
+        ]
+    },
+    {
+        "topic": "Online Privacy",
+        "question": "Who should you accept friend requests from?",
+        "rightAnswer": "Only people you know in real life",
+        "answers": [
+            "Everyone",
+            "Only people with profile pictures",
+            "Only people you know in real life",
+            "People who seem nice"
+        ]
+    },
+    {
+        "topic": "Online Privacy",
+        "question": "Why is it risky to use your full name online?",
+        "rightAnswer": "Strangers can use it to find more info about you",
+        "answers": [
+            "It\u2019s hard to type",
+            "Friends already know it",
+            "Strangers can use it to find more info about you",
+            "It\u2019s not risky"
+        ]
+    },
+    {
+        "topic": "Online Privacy",
+        "question": "What is the safest profile picture to use?",
+        "rightAnswer": "A cartoon or avatar",
+        "answers": [
+            "A picture of your house",
+            "A cartoon or avatar",
+            "A picture with friends",
+            "A full body photo"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "What is a password manager?",
+        "rightAnswer": "A tool that stores and protects your passwords",
+        "answers": [
+            "A person who keeps your passwords",
+            "A game about passwords",
+            "A tool that stores and protects your passwords",
+            "A type of virus"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "Should you use the same password for every account?",
+        "rightAnswer": "No, it's safer to use different ones",
+        "answers": [
+            "Yes, it\u2019s easier to remember",
+            "No, it's safer to use different ones",
+            "Only for games",
+            "Only if you write them down"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "What should a strong password include?",
+        "rightAnswer": "Letters, numbers, and symbols",
+        "answers": [
+            "Only your name",
+            "Only numbers",
+            "Letters, numbers, and symbols",
+            "A simple word"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "Is it safe to share passwords with your best friend?",
+        "rightAnswer": "No, passwords should be private",
+        "answers": [
+            "Yes, if you trust them",
+            "Only sometimes",
+            "No, passwords should be private",
+            "Only at school"
+        ]
+    },
+    {
+        "topic": "Password Safety",
+        "question": "What should you do if you see someone else's password?",
+        "rightAnswer": "Tell a trusted adult",
+        "answers": [
+            "Use it quickly",
+            "Keep it secret",
+            "Tell a trusted adult",
+            "Take a screenshot"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "Is it okay to post embarrassing photos of friends?",
+        "rightAnswer": "No, it could hurt their feelings",
+        "answers": [
+            "Yes, if it\u2019s funny",
+            "Only with permission",
+            "No, it could hurt their feelings",
+            "Only on your private account"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "How can you stop cyberbullying?",
+        "rightAnswer": "Block the bully and report them",
+        "answers": [
+            "Block the bully and report them",
+            "Message them back",
+            "Laugh it off",
+            "Tell a stranger online"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "What should you do if someone threatens you online?",
+        "rightAnswer": "Tell a trusted adult immediately",
+        "answers": [
+            "Delete the message",
+            "Tell a trusted adult immediately",
+            "Reply with a threat",
+            "Post about it"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "Why shouldn't you forward mean messages?",
+        "rightAnswer": "It spreads the bullying",
+        "answers": [
+            "It\u2019s fun",
+            "It spreads the bullying",
+            "Everyone does it",
+            "It makes it less harmful"
+        ]
+    },
+    {
+        "topic": "Cyberbullying",
+        "question": "What is empathy in online communication?",
+        "rightAnswer": "Understanding and caring about others\u2019 feelings",
+        "answers": [
+            "Laughing at posts",
+            "Understanding and caring about others\u2019 feelings",
+            "Liking every comment",
+            "Sharing everything you read"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "What does 'think before you post' mean?",
+        "rightAnswer": "Make sure your post is kind and safe",
+        "answers": [
+            "Post as fast as you can",
+            "Make sure your post is kind and safe",
+            "Only post funny things",
+            "Never post anything"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "Why should you avoid clicking unknown pop-ups?",
+        "rightAnswer": "They may contain viruses",
+        "answers": [
+            "They\u2019re fun",
+            "They may contain viruses",
+            "They look interesting",
+            "They might be games"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "What is one sign of a secure website?",
+        "rightAnswer": "It starts with 'https'",
+        "answers": [
+            "It has lots of ads",
+            "It uses 'http'",
+            "It starts with 'https'",
+            "It asks for your password"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "How can you be kind online?",
+        "rightAnswer": "By saying nice things and helping others",
+        "answers": [
+            "By posting funny jokes",
+            "By ignoring people",
+            "By saying nice things and helping others",
+            "By blocking everyone"
+        ]
+    },
+    {
+        "topic": "Safe Online Behavior",
+        "question": "What should you do when using public Wi-Fi?",
+        "rightAnswer": "Avoid logging into important accounts",
+        "answers": [
+            "Share your location",
+            "Download games",
+            "Avoid logging into important accounts",
+            "Give out your email"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "Why do scam emails often say you won money?",
+        "rightAnswer": "To trick you into clicking links",
+        "answers": [
+            "They want to give you a gift",
+            "To trick you into clicking links",
+            "They know you're lucky",
+            "To make you happy"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "What should you do if someone online asks for money?",
+        "rightAnswer": "Say no and tell an adult",
+        "answers": [
+            "Send them a little",
+            "Say no and tell an adult",
+            "Ask for their name",
+            "Give them your bank info"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "What can scammers do with your personal info?",
+        "rightAnswer": "Steal your identity",
+        "answers": [
+            "Give you free stuff",
+            "Steal your identity",
+            "Make you famous",
+            "Protect your privacy"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "What should you check in emails before clicking a link?",
+        "rightAnswer": "If the sender is someone you trust",
+        "answers": [
+            "The colors",
+            "If the sender is someone you trust",
+            "The emojis",
+            "The pictures"
+        ]
+    },
+    {
+        "topic": "Recognizing Scams",
+        "question": "What does 'phishing' mean?",
+        "rightAnswer": "Tricking people into giving personal info",
+        "answers": [
+            "Catching fish online",
+            "Tricking people into giving personal info",
+            "Posting photos of food",
+            "Making fake websites"
         ]
     }
 ]

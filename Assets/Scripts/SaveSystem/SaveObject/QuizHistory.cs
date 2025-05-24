@@ -5,11 +5,9 @@ using UnityEngine;
 public class QuizHistory : SaveObject
 {
     public List<string> completedQuiz;
-    public int currentLevel;
 
     public QuizHistory()
     {
         completedQuiz = new List<string>();
-        currentLevel = 1;
     }
 }

@@ -1585,8 +1585,9 @@ MonoBehaviour:
   txt_healthPrice: {fileID: 7555044057260676305}
   btn_Upgrade: {fileID: 6332831186442807761}
   btn_BuyHealth: {fileID: 9172153983644608796}
+  btn_DoQuiz: {fileID: 2646693905505636275}
   btn_Done: {fileID: 7289181270585089058}
-  weaponPriceSection: {fileID: 0}
+  weaponPriceSection: {fileID: 6112766924305195205}
   prefData: {fileID: 11400000, guid: 4c67e042ce362a2439278a02fa04a07d, type: 2}
   weaponIcons:
   - {fileID: 1161604956373862266, guid: 976dddb2338a410458665693c073dcf0, type: 3}
