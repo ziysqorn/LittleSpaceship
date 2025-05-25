@@ -23,14 +23,17 @@ public class UIManager : MonoBehaviour
 
 	public void addUI(GameObject inUI)
 	{
-		if(UIPriorities.Count > 0)
+		if (inUI)
 		{
-			GameObject topUI = UIPriorities.Peek();
-			CanvasGroup topCanvasGroup = topUI.GetComponent<CanvasGroup>();
-			topCanvasGroup.interactable = false;
-			topCanvasGroup.blocksRaycasts = false;
+			if (UIPriorities.Count > 0)
+			{
+				GameObject topUI = UIPriorities.Peek();
+				CanvasGroup topCanvasGroup = topUI.GetComponent<CanvasGroup>();
+				topCanvasGroup.interactable = false;
+				topCanvasGroup.blocksRaycasts = false;
+			}
+			UIPriorities.Push(inUI);
 		}
-		UIPriorities.Push(inUI);
 	}
 
 	public void popOutUI()

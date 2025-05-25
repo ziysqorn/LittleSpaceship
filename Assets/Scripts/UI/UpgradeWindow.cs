@@ -215,9 +215,12 @@ public class UpgradeWindow : MonoBehaviour
         {
             GameObject GB_quizDialog = Instantiate(prefData.quizDialogWindowPref);
             QuizWindow quizWindow = GB_quizDialog.GetComponent<QuizWindow>();
-            quizWindow?.initQuizList(15);
-            UIManager uIManager = FindFirstObjectByType<UIManager>();
-            uIManager?.addUI(GB_quizDialog);
+            if (quizWindow != null) {
+				quizWindow.initQuizList(15);
+                quizWindow.setRemainingTime(300.0f);
+			}
+            UIManager uiManager = FindFirstObjectByType<UIManager>();
+			uiManager?.addUI(GB_quizDialog);
         }
     }
 

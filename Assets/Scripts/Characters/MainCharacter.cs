@@ -5,6 +5,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Game.Interfaces;
 using System;
+using UnityEngine.TextCore.Text;
 
 public class MainCharacter : BaseCharacter, IDamageable
 {
@@ -88,48 +89,91 @@ public class MainCharacter : BaseCharacter, IDamageable
 	{
 		if (prefData)
 		{
-			PoolManager manager = PoolManager.poolManager;
-			if(manager && prefData.shieldPref)
+			//Shield shield = prefData.shieldPref.GetComponent<Shield>();
+			//if (shield)
+			//{
+			//	if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
+			//	GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
+			//	if(newShield) newShield.transform.parent = transform;
+			//}
+			if (prefData.quizDialogWindowPref)
 			{
-				//Shield shield = prefData.shieldPref.GetComponent<Shield>();
-				//if (shield)
-				//{
-				//	if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
-				//	GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
-				//	if(newShield) newShield.transform.parent = transform;
-				//}
-				if (prefData.quizDialogWindowPref)
+				GameObject quizDialogWindow = Instantiate(prefData.quizDialogWindowPref);
+				QuizWindow quizWindow = quizDialogWindow.GetComponent<QuizWindow>();
+				if (quizWindow != null)
 				{
-					GameObject quizDialogWindow = Instantiate(prefData.quizDialogWindowPref);
-					QuizWindow quizWindow = quizDialogWindow.GetComponent<QuizWindow>();
-					if (quizWindow != null) {
-						quizWindow.setOwner(this);
-					}
+					quizWindow.initQuizList(1);
+					quizWindow.setRemainingTime(10.0f);
+					quizWindow.setOwner(this);
+					quizWindow.OnQuizEnd += Hurt;
 				}
+				UIManager uiManager = FindFirstObjectByType<UIManager>();
+				uiManager?.addUI(quizDialogWindow);
 			}
 		}
 	}
 
-	public bool Hurt()
+	public void checkCurrentHealth()
 	{
-		--CurrentHealth;
-		HUD playerHUD = FindFirstObjectByType<HUD>();
-		if (playerHUD)
-		{
-			playerHUD.UpdateHeart(false);
-		}
+		Time.timeScale = 1.0f;
+		Cursor.visible = false;
 		if (CurrentHealth <= 0)
 		{
 			if (!bIsDead)
 			{
 				Death();
 				bIsDead = true;
-				Instantiate(prefData.tryAgainMenuPref);
-				Destroy(gameObject);
 			}
 		}
 		else bIsDead = false;
-		return bIsDead;
+		if (!bIsDead)
+		{
+			if (prefData && prefData.shieldPref)
+			{
+				PoolManager manager = PoolManager.poolManager;
+				Shield shield = prefData.shieldPref.GetComponent<Shield>();
+				if (shield)
+				{
+					if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(prefData.shieldPref));
+					GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, gameObject.transform.position, gameObject.transform.rotation);
+					if (newShield) newShield.transform.parent = gameObject.transform;
+				}
+			}
+		}
+		else
+		{
+			Instantiate(prefData.tryAgainMenuPref);
+			Destroy(gameObject);
+		}
+	}
+
+	public void Hurt(int correctAnsCount, int totalAnsCount)
+	{
+		if (correctAnsCount != totalAnsCount)
+		{
+			--CurrentHealth;
+			HUD playerHUD = FindFirstObjectByType<HUD>();
+			if (playerHUD)
+			{
+				playerHUD.UpdateHeart(false);
+			}
+		}
+		if (prefData && prefData.screenMessagePref)
+		{
+			GameObject screenMessageUI = Instantiate(prefData.screenMessagePref);
+			if (screenMessageUI != null)
+			{
+				ScreenMessageUI screenMessage = screenMessageUI.GetComponent<ScreenMessageUI>();
+				if (screenMessage != null)
+				{
+					string result = string.Format("Correct answers: {0}/{1}", correctAnsCount, totalAnsCount);
+					screenMessage.setScreenMessage(result);
+					screenMessage.setMessageTextColor(Color.white);
+					screenMessage.setCharacter(this);
+					screenMessage.OnMessageEnd += checkCurrentHealth;
+				}
+			}
+		}
 	}
 
 	public bool setHealth(int inHealth)

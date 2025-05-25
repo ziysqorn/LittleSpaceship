@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using TreeEditor;
@@ -9,6 +10,7 @@ public class ScreenMessageUI : MonoBehaviour
     protected float remainingTime = 2.0f;
     protected MainCharacter character;
     protected bool result = false;
+    public event Action OnMessageEnd;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,27 +29,7 @@ public class ScreenMessageUI : MonoBehaviour
             yield return null;
             remainingTime -= Time.unscaledDeltaTime;
 		}
-		Time.timeScale = 1.0f;
-		Cursor.visible = false;
-        bool bIsCharacterDead = false;
-        if (!result && character)
-        {
-            bIsCharacterDead = character.Hurt();
-        }
-        if (!bIsCharacterDead)
-        {
-			if (character && character.prefData && character.prefData.shieldPref)
-			{
-				PoolManager manager = PoolManager.poolManager;
-				Shield shield = character.prefData.shieldPref.GetComponent<Shield>();
-				if (shield)
-				{
-					if (!manager.PoolExisted(shield.shieldName)) manager.RegisterPool(shield.shieldName, new ObjectPool(character.prefData.shieldPref));
-					GameObject newShield = manager.ActivateObjFromPool(shield.shieldName, character.gameObject.transform.position, character.gameObject.transform.rotation);
-					if (newShield) newShield.transform.parent = character.gameObject.transform;
-				}
-			}
-		}
+        OnMessageEnd();
 		Destroy(gameObject);
 	}
 

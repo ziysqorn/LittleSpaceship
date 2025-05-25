@@ -70,9 +70,9 @@ public class QuizDatabase
 		return null;
 	}
 
-	public List<QuizObject> getRandomQuizList(int quizCount)
+	public List<KeyValuePair<QuizObject, string>> getRandomQuizList(int quizCount)
 	{
-		List<QuizObject> list = new List<QuizObject>();
+		List<KeyValuePair<QuizObject, string>> list = new List<KeyValuePair<QuizObject, string>>();
 		if (quizCount > 0)
 		{
 			int randomQuiz = Random.Range(0, quizList.Count);
@@ -82,7 +82,7 @@ public class QuizDatabase
 				for (int i = 0; i < quizCount; ++i)
 				{
 					int idx = (randomQuiz + quizList.Count) % quizList.Count;
-					list.Add(quizList[idx]);
+					list.Add(new KeyValuePair<QuizObject, string>(quizList[idx], ""));
 					++randomQuiz;
 				}
 			}
@@ -91,7 +91,7 @@ public class QuizDatabase
 				for (int i = 0; i < quizCount; ++i)
 				{
 					int idx = randomQuiz % quizList.Count;
-					list.Add(quizList[idx]);
+					list.Add(new KeyValuePair<QuizObject, string>(quizList[idx], ""));
 					++randomQuiz;
 				}
 			}
