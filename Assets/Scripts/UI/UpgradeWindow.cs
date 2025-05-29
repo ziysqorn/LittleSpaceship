@@ -145,12 +145,14 @@ public class UpgradeWindow : MonoBehaviour
             if (weaponLevels.ContainsKey(savedCurrentWeapon.currentWeapon))
             {
                 currentWeaponIdx = weaponLevels[savedCurrentWeapon.currentWeapon];
+                currentWeapon = savedCurrentWeapon.currentWeapon;
             }
         }
         else
         {
             currentWeaponIdx = 0;
-        }
+			currentWeapon = "NormalRocket";
+		}
         UpdateWeaponInfo();
 	}
 
@@ -218,11 +220,46 @@ public class UpgradeWindow : MonoBehaviour
             if (quizWindow != null) {
 				quizWindow.initQuizList(15);
                 quizWindow.setRemainingTime(300.0f);
+                quizWindow.OnQuizEnd += checkQuizResult;
 			}
             UIManager uiManager = FindFirstObjectByType<UIManager>();
 			uiManager?.addUI(GB_quizDialog);
         }
     }
+
+    protected void checkQuizResult(int correctAnsCount, int totalQuizCount)
+    {
+        int percentage = (int)Math.Ceiling((double)(correctAnsCount / totalQuizCount) * 100.0f);
+        if (percentage >= 80)
+        {
+			MainSceneScript mainSceneScript = FindFirstObjectByType<MainSceneScript>();
+			if (mainSceneScript)
+			{
+                int amount = (int)Math.Ceiling((double)300 * percentage / 100);
+				mainSceneScript.UpdateScore(amount);
+				txt_Score.text = mainSceneScript.curScore.ToString();
+			}
+		}
+		if (prefData && prefData.screenMessagePref)
+		{
+			GameObject screenMessageUI = Instantiate(prefData.screenMessagePref);
+			if (screenMessageUI != null)
+			{
+				ScreenMessageUI screenMessage = screenMessageUI.GetComponent<ScreenMessageUI>();
+				if (screenMessage != null)
+				{
+					string result = string.Format("Correct answers: {0}/{1}", correctAnsCount, totalQuizCount);
+					screenMessage.setScreenMessage(result);
+					screenMessage.setMessageTextColor(Color.white);
+					UIManager uiManager = FindFirstObjectByType<UIManager>();
+					if(uiManager != null)
+                    {
+                        screenMessage.OnMessageEnd += uiManager.popOutUI;
+                    }
+				}
+			}
+		}
+	}
 
     protected bool checkAbleToBuy(int price)
     {

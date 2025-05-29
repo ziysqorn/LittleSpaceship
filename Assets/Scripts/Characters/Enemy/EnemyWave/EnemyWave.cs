@@ -32,6 +32,7 @@ public abstract class EnemyWave : MonoBehaviour
             {
                 Instantiate(prefData.upgradeWindowPref);
             }
+            Destroy(gameObject);
         }
     }
 }

@@ -117,6 +117,8 @@ public class MainCharacter : BaseCharacter, IDamageable
 	{
 		Time.timeScale = 1.0f;
 		Cursor.visible = false;
+		UIManager uiManager = FindFirstObjectByType<UIManager>();
+		uiManager?.popOutUI();
 		if (CurrentHealth <= 0)
 		{
 			if (!bIsDead)
@@ -169,7 +171,6 @@ public class MainCharacter : BaseCharacter, IDamageable
 					string result = string.Format("Correct answers: {0}/{1}", correctAnsCount, totalAnsCount);
 					screenMessage.setScreenMessage(result);
 					screenMessage.setMessageTextColor(Color.white);
-					screenMessage.setCharacter(this);
 					screenMessage.OnMessageEnd += checkCurrentHealth;
 				}
 			}

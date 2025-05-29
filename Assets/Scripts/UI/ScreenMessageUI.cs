@@ -8,7 +8,6 @@ public class ScreenMessageUI : MonoBehaviour
 {
     [SerializeField] protected TextMeshProUGUI screenMessage;
     protected float remainingTime = 2.0f;
-    protected MainCharacter character;
     protected bool result = false;
     public event Action OnMessageEnd;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,7 +28,7 @@ public class ScreenMessageUI : MonoBehaviour
             yield return null;
             remainingTime -= Time.unscaledDeltaTime;
 		}
-        OnMessageEnd();
+        if(OnMessageEnd != null) OnMessageEnd();
 		Destroy(gameObject);
 	}
 
@@ -41,11 +40,6 @@ public class ScreenMessageUI : MonoBehaviour
 	public void setScreenMessage(in string inMessage)
     {
         screenMessage.text = inMessage; 
-    }
-
-    public void setCharacter(in MainCharacter inCharacter)
-    {
-        character = inCharacter;    
     }
 
     public void setResult(in bool inResult)
