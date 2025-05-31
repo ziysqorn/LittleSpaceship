@@ -18,6 +18,11 @@ public abstract class Collectibles : MonoBehaviour
 	{
         if (collision != null && collision.gameObject && collision.gameObject.tag == "Player") {
             ApplyEffect(collision.gameObject);
+			SoundManager soundManager = SoundManager.instance;
+			if (soundManager)
+			{
+				soundManager.PlaySFX(soundManager.SFX_rewarded);
+			}
 			PoolManager manager = PoolManager.poolManager;
             if (manager) manager.RetrieveObjToPool(collectibleName, gameObject);
 		}

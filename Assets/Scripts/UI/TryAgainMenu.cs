@@ -2,13 +2,29 @@ using GlobalAccess;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TryAgainMenu : MonoBehaviour
 {
     [SerializeField] protected TextMeshProUGUI txt_HighestScore;
+    [SerializeField] protected Button btn_TryAgain;
+	[SerializeField] protected Button btn_MainMenu;
+	[SerializeField] protected bool isGameOverMenu;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SoundManager soundManager = SoundManager.instance;
+        if (soundManager)
+        {
+            if (isGameOverMenu)
+            {
+				soundManager.PlaySFX(soundManager.SFX_gameOver);
+			}
+			else
+			{
+                soundManager.PlaySFX(soundManager.SFX_congrats);
+			}
+		}
         Cursor.visible = true;
 		GameProgress gameProgress = new GameProgress();
 		gameProgress.curWave = 0;
@@ -36,6 +52,8 @@ public class TryAgainMenu : MonoBehaviour
 			GameplayStatics.SaveGame(playerInfo, "PlayerInfo.space");
 		}
 		GameplayStatics.SaveGame(gameProgress, "GameProgress.space");
+        if (btn_MainMenu) btn_MainMenu.onClick.AddListener(MainMenuClicked);
+        if (btn_TryAgain) btn_TryAgain.onClick.AddListener(TryAgainClicked);
         Time.timeScale = 0.0f;
 	}
 
@@ -45,7 +63,13 @@ public class TryAgainMenu : MonoBehaviour
         
     }
 
-    public void TryAgainClicked()
+	void OnDestroy()
+	{
+        if (btn_MainMenu) btn_MainMenu.onClick.RemoveListener(MainMenuClicked);
+		if (btn_TryAgain) btn_TryAgain.onClick.RemoveListener(TryAgainClicked);
+	}
+
+	public void TryAgainClicked()
     {
 		SceneManager.LoadScene("MainScene");
 	}

@@ -3,6 +3,7 @@ using GlobalAccess;
 using System.Collections.Generic;
 using System;
 using Game.Interfaces;
+using Unity.VisualScripting;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public abstract class BaseCharacter : MonoBehaviour
 		PoolManager manager = PoolManager.poolManager;
 		if (manager)
 		{
+			SoundManager soundManager = SoundManager.instance;
+			if (soundManager)
+			{
+				soundManager.PlaySFX(soundManager.SFX_shipExplosion);
+			}
 			if (destroyedExplosion)
 			{
 				Explosion attachedExplosion = destroyedExplosion.GetComponent<Explosion>();

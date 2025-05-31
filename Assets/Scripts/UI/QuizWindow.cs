@@ -18,6 +18,7 @@ public class QuizWindow : MonoBehaviour
     protected List<KeyValuePair<QuizObject, string>> quizList;
     protected int currentQuizIdx = 0;
     protected MainCharacter owner;
+	private bool hasPlayedTickSound = false;
 	public event Action<int, int> OnQuizEnd;
     public float remainingTime { get; private set; } = 10.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -143,6 +144,15 @@ public class QuizWindow : MonoBehaviour
         {
 			yield return null;
             remainingTime -= Time.unscaledDeltaTime;
+			if(remainingTime < 5.0f && !hasPlayedTickSound)
+			{
+				SoundManager soundManager = SoundManager.instance;
+				if (soundManager)
+				{
+					soundManager.PlaySFX(soundManager.SFX_ticktock);
+					hasPlayedTickSound = true;
+				}
+			}
             if(quizTimerText) quizTimerText.text = Mathf.CeilToInt(remainingTime).ToString();
 		}
 
