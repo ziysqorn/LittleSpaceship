@@ -27,6 +27,11 @@ public class UpgradeWindow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Disable();
+		}
 		weaponLevels.Add("NormalRocket", 0);
         weaponLevels.Add("ArmorPierce", 1);
         weaponLevels.Add("LaserBeam", 2);
@@ -71,10 +76,13 @@ public class UpgradeWindow : MonoBehaviour
 
     protected void CloseWindow()
     {
-        Cursor.visible = false;
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Enable();
+		}
+		Cursor.visible = false;
         Time.timeScale = 1.0f;
-		MainSceneScript mainScene = FindFirstObjectByType<MainSceneScript>();
-		mainScene.IncreaseCurWave();
 		PlayerInfo playerInfo = GameplayStatics.LoadGame<PlayerInfo>("PlayerInfo.space");
         ScoreboardSave scoreboardSave = GameplayStatics.LoadGame<ScoreboardSave>("ScoreboardSave.space");
         SavedCurrentWeapon savedCurrentWeapon = GameplayStatics.LoadGame<SavedCurrentWeapon>("SavedCurrentWeapon.space");

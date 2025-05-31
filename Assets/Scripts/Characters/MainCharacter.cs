@@ -113,6 +113,18 @@ public class MainCharacter : BaseCharacter, IDamageable
 		}
 	}
 
+	protected void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(collision && collision.gameObject.tag == "Enemy")
+		{
+			Shield curShield = GetComponentInChildren<Shield>();
+			if (!curShield)
+			{
+				GameplayStatics.ApplyDamage(gameObject, 1, collision.gameObject, collision.gameObject);
+			}
+		}
+	}
+
 	public void checkCurrentHealth()
 	{
 		Time.timeScale = 1.0f;

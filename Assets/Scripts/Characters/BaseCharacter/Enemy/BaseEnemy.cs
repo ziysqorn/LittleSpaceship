@@ -49,10 +49,14 @@ public abstract class BaseEnemy : BaseCharacter
 	{
 		base.Death();
 		RewardManager rewardManager = RewardManager.instance;
-		if (rewardManager)
+		int rewardChance = Random.Range(0, 2);
+		if(rewardChance == 0)
 		{
-			GameObject reward = rewardManager.RewardProc();
-			if(reward) reward.transform.position = gameObject.transform.position;
+			if (rewardManager)
+			{
+				GameObject reward = rewardManager.RewardProc();
+				if (reward) reward.transform.position = gameObject.transform.position;
+			}
 		}
 		PoolManager manager = PoolManager.poolManager;
 		if (manager)

@@ -2376,7 +2376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do Quiz (x100 Coin)
+  m_text: Do Quiz (x300 Coin)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8b37177216b60e429ea0cd5dabe991d, type: 2}
   m_sharedMaterial: {fileID: 6084896751843834502, guid: f8b37177216b60e429ea0cd5dabe991d, type: 2}

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-	protected InputMap inputMap;
+	public InputMap inputMap;
 	protected GameObject pauseMenu = null;
 	[SerializeField] protected PrefabData prefData;
 
@@ -11,12 +11,14 @@ public class PlayerInput : MonoBehaviour
 	{
 		inputMap = new InputMap();
 		inputMap.Player.Enable();
+		inputMap.UI.Enable();
 		inputMap.Player.PauseGame.performed += PauseTheGame;
 	}
 
 	protected void OnDisable()
 	{
 		inputMap.Player.Disable();
+		inputMap.UI.Disable();
 		inputMap.Player.PauseGame.performed -= PauseTheGame;
 	}
 

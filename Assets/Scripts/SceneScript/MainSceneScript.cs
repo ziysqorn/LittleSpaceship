@@ -55,7 +55,14 @@ public class MainSceneScript : MonoBehaviour
     {
         ++curWave;
         if (curWave >= maxWave) AllWaveCleared();
-        else SpawnWave();
+        else
+        {
+			if (prefData && prefData.upgradeWindowPref)
+			{
+				Instantiate(prefData.upgradeWindowPref);
+				SpawnWave();
+			}
+		}
     }
 
     public void SpawnWave()

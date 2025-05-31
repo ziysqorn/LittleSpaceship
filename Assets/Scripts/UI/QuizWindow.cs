@@ -24,6 +24,11 @@ public class QuizWindow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Disable();
+		}
 		if (btn_Summit) btn_Summit.onClick.AddListener(SubmitAnswer);
 		if (btn_prevQuestion) btn_prevQuestion.onClick.AddListener(PrevQuestion);
 		if (btn_nextQuestion) btn_nextQuestion.onClick.AddListener(NextQuestion);
@@ -253,6 +258,11 @@ public class QuizWindow : MonoBehaviour
 
     public void EndQuiz()
     {
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Enable();
+		}
 		int correctAnsCount = 0;
 		for (int i = 0; i < quizList.Count; ++i)
 		{

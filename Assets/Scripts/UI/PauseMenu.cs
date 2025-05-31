@@ -7,8 +7,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -25,25 +24,25 @@ public class PauseMenu : MonoBehaviour
 
 	public void MainMenuClicked()
 	{
-		GameProgress gameProgress = new GameProgress();
-		MainSceneScript mainScene = FindFirstObjectByType<MainSceneScript>();
-		ScoreboardSave scoreboardSave = GameplayStatics.LoadGame<ScoreboardSave>("ScoreboardSave.space");
-		PlayerInfo playerInfo = GameplayStatics.LoadGame<PlayerInfo>("PlayerInfo.space");
-		if (mainScene != null)
-		{
-			if(scoreboardSave == null) scoreboardSave = new ScoreboardSave();
-			scoreboardSave.curScore = mainScene.curScore;
-			gameProgress.curWave = mainScene.curWave;
-			GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
-			GameplayStatics.SaveGame(gameProgress, "GameProgress.space");
-		}
-		if(playerInfo == null) playerInfo = new PlayerInfo();
-		MainCharacter mainCharacter = FindFirstObjectByType<MainCharacter>();
-		if (mainCharacter != null)
-		{
-			playerInfo.playerHealth = mainCharacter.CurrentHealth;
-			GameplayStatics.SaveGame(playerInfo, "PlayerInfo.space");
-		}
+		//GameProgress gameProgress = new GameProgress();
+		//MainSceneScript mainScene = FindFirstObjectByType<MainSceneScript>();
+		//ScoreboardSave scoreboardSave = GameplayStatics.LoadGame<ScoreboardSave>("ScoreboardSave.space");
+		//PlayerInfo playerInfo = GameplayStatics.LoadGame<PlayerInfo>("PlayerInfo.space");
+		//if (mainScene != null)
+		//{
+		//	if(scoreboardSave == null) scoreboardSave = new ScoreboardSave();
+		//	scoreboardSave.curScore = mainScene.curScore;
+		//	gameProgress.curWave = mainScene.curWave;
+		//	GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
+		//	GameplayStatics.SaveGame(gameProgress, "GameProgress.space");
+		//}
+		//if(playerInfo == null) playerInfo = new PlayerInfo();
+		//MainCharacter mainCharacter = FindFirstObjectByType<MainCharacter>();
+		//if (mainCharacter != null)
+		//{
+		//	playerInfo.playerHealth = mainCharacter.CurrentHealth;
+		//	GameplayStatics.SaveGame(playerInfo, "PlayerInfo.space");
+		//}
 		Time.timeScale = 0.0f;
 		SceneManager.LoadScene("MainMenu");
 	}

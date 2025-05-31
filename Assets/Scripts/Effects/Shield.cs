@@ -25,6 +25,7 @@ public class Shield : MonoBehaviour
 
     public void DelayDisableShield(float inDelay)
     {
+        CancelInvoke("DisableShield");
         Invoke("DisableShield", inDelay);
     }
 

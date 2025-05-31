@@ -13,7 +13,12 @@ public class TryAgainMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SoundManager soundManager = SoundManager.instance;
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Disable();
+		}
+		SoundManager soundManager = SoundManager.instance;
         if (soundManager)
         {
             if (isGameOverMenu)
@@ -71,12 +76,35 @@ public class TryAgainMenu : MonoBehaviour
 
 	public void TryAgainClicked()
     {
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Enable();
+		}
+		ScoreboardSave scoreboardSave = GameplayStatics.LoadGame<ScoreboardSave>("ScoreboardSave.space");
+		if (scoreboardSave != null) scoreboardSave.curScore = 0;
+		else
+		{
+			scoreboardSave = new ScoreboardSave();
+			scoreboardSave.curScore = 0;
+			scoreboardSave.maxScore = 0;
+		}
+		GameplayStatics.DeleteSaveGame("GameProgress.space");
+		GameplayStatics.DeleteSaveGame("PlayerInfo.space");
+		GameplayStatics.DeleteSaveGame("QuizHistory.space");
+		GameplayStatics.DeleteSaveGame("SavedCurrentWeapon.space");
+		GameplayStatics.SaveGame(scoreboardSave, "ScoreboardSave.space");
 		SceneManager.LoadScene("MainScene");
 	}
 
     public void MainMenuClicked()
     {
-        GameplayStatics.DeleteSaveGame("GameProgress.space");
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Enable();
+		}
+		GameplayStatics.DeleteSaveGame("GameProgress.space");
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -10,6 +10,10 @@ public class DialogBox : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+        if (playerInput != null) {
+            playerInput.inputMap.UI.Disable();
+        }
         btn_Close?.onClick.AddListener(CloseWindow);
     }
 
@@ -28,6 +32,11 @@ public class DialogBox : MonoBehaviour
     {
 		UIManager uiManager = FindFirstObjectByType<UIManager>();
 		uiManager?.popOutUI();
+		PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+		if (playerInput != null)
+		{
+			playerInput.inputMap.UI.Enable();
+		}
 		Destroy(gameObject);
     }
 

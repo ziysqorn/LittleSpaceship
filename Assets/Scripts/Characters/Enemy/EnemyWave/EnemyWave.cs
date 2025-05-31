@@ -28,10 +28,8 @@ public abstract class EnemyWave : MonoBehaviour
 		//Debug.Log($"Enemy died. enemyNum remaining: {enemyNum}");
 		if (enemyNum <= 0)
         {
-            if(prefData && prefData.upgradeWindowPref)
-            {
-                Instantiate(prefData.upgradeWindowPref);
-            }
+			MainSceneScript mainScene = FindFirstObjectByType<MainSceneScript>();
+			if (mainScene) mainScene.IncreaseCurWave();
             Destroy(gameObject);
         }
     }

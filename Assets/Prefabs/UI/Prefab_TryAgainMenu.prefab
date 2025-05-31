@@ -286,6 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt_HighestScore: {fileID: 7299552403422980720}
+  btn_TryAgain: {fileID: 5403611797189088577}
+  btn_MainMenu: {fileID: 6934764763480119012}
+  isGameOverMenu: 1
 --- !u!1 &2794196833272963363
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +574,7 @@ GameObject:
   - component: {fileID: 2093984344021221594}
   - component: {fileID: 5403611797189088577}
   m_Layer: 0
-  m_Name: Button
+  m_Name: btn_TryAgain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -946,7 +949,7 @@ GameObject:
   - component: {fileID: 8201717377724033816}
   - component: {fileID: 6934764763480119012}
   m_Layer: 0
-  m_Name: Button
+  m_Name: btn_MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
