@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using System;
 
 public class QuizDatabase
 {
@@ -11,36 +12,58 @@ public class QuizDatabase
 	protected QuizObject currentQuiz;
 	protected int currentLevel;
 	protected HashSet<string> askedQuestionSet = new HashSet<string>();
-    public QuizDatabase()
+	QuizServices quizServices;
+    public QuizDatabase(QuizServices inServices)
     {
-		TextAsset quizFile = Resources.Load<TextAsset>("QuizDatabase");
-		string textContent = quizFile.text;
-		if (textContent != "")
+		this.quizServices = inServices;
+		if (quizServices)
 		{
-			JArray jArray = JArray.Parse(textContent);
-			foreach (JObject quiz in jArray)
-			{
-				string quizTopic = (string)quiz["topic"];
-				string quizQuestion = (string)quiz["question"];
-				string quizRightAnswer = (string)quiz["rightAnswer"];
-				QuizObject quizObj = new QuizObject(quizTopic, quizQuestion, quizRightAnswer, quiz["answers"].ToObject<List<string>>());
-				AddQuiz(quizObj.topic, quizObj);
-				quizList.Add(quizObj);
-			}
-			QuizHistory quizHistory = GameplayStatics.LoadGame<QuizHistory>("QuizHistory.space");
-			if(quizHistory != null)
-			{
-				foreach(string quizQuestion in quizHistory.completedQuiz)
+			quizServices.Get("/allQuiz",
+			onSuccess: (response) => { 
+				try
 				{
-					if (!askedQuestionSet.Contains(quizQuestion))
-						askedQuestionSet.Add(quizQuestion);
+					JArray jArray = JArray.Parse(response);
+					foreach (JObject quiz in jArray)
+					{
+						string quizTopic = (string)quiz["topic"];
+						string quizQuestion = (string)quiz["question"];
+						string quizRightAnswer = (string)quiz["rightAnswer"];
+
+						QuizObject quizObj = new QuizObject(
+							quizTopic,
+							quizQuestion,
+							quizRightAnswer,
+							quiz["answers"].ToObject<string[]>()
+						);
+
+						AddQuiz(quizObj.topic, quizObj);
+						quizList.Add(quizObj);
+					}
+
+					// Load quiz history as usual
+					QuizHistory quizHistory = GameplayStatics.LoadGame<QuizHistory>("QuizHistory.space");
+					if (quizHistory != null)
+					{
+						foreach (string quizQuestion in quizHistory.completedQuiz)
+						{
+							if (!askedQuestionSet.Contains(quizQuestion))
+								askedQuestionSet.Add(quizQuestion);
+						}
+					}
+					else
+					{
+						quizHistory = new QuizHistory();
+						GameplayStatics.SaveGame(quizHistory, "QuizHistory.space");
+					}
 				}
-			}
-			else
-			{
-				quizHistory = new QuizHistory();
-				GameplayStatics.SaveGame(quizHistory, "QuizHistory.space");
-			}
+				catch (Exception ex)
+				{
+					Debug.LogError("Error parsing quiz JSON: " + ex.Message);
+				}
+			},
+			onError: (error) => { Debug.Log(error); }
+			);
+			
 		}
 	}
 
@@ -59,7 +82,7 @@ public class QuizDatabase
 	{
 		if (quizMap.ContainsKey(topic))
 		{
-			int randomQuiz = Random.Range(0, quizMap[topic].Count);
+			int randomQuiz = UnityEngine.Random.Range(0, quizMap[topic].Count);
 			if (!askedQuestionSet.Contains(quizMap[topic][randomQuiz].question))
 			{
 				currentQuiz = quizMap[topic][randomQuiz];
@@ -75,8 +98,8 @@ public class QuizDatabase
 		List<KeyValuePair<QuizObject, string>> list = new List<KeyValuePair<QuizObject, string>>();
 		if (quizCount > 0)
 		{
-			int randomQuiz = Random.Range(0, quizList.Count);
-			int direction = Random.Range(0, 2);
+			int randomQuiz = UnityEngine.Random.Range(0, quizList.Count);
+			int direction = UnityEngine.Random.Range(0, 2);
 			if (direction == 0)
 			{
 				for (int i = 0; i < quizCount; ++i)

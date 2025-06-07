@@ -36,8 +36,8 @@ public class UpgradeWindow : MonoBehaviour
         weaponLevels.Add("ArmorPierce", 1);
         weaponLevels.Add("LaserBeam", 2);
         weapons = new List<KeyValuePair<string, int>> {
-            new KeyValuePair<string, int>("Armor Pierce", 0),
-            new KeyValuePair<string, int>("Laser Beam", 0),
+            new KeyValuePair<string, int>("Armor Pierce", 120),
+            new KeyValuePair<string, int>("Laser Beam", 200),
             new KeyValuePair<string, int>("Max", 0)
             };
         if(prefData && prefData.armorPiercePref && prefData.laserBeamPref)
@@ -121,7 +121,8 @@ public class UpgradeWindow : MonoBehaviour
 			string result = "";
 			if (checkAbleToBuy(weapons[currentWeaponIdx].Value))
 			{
-                AttackComponent attackComponent = mainCharacter.GetComponent<AttackComponent>();
+				scoreConsume(weapons[currentWeaponIdx].Value);
+				AttackComponent attackComponent = mainCharacter.GetComponent<AttackComponent>();
                 if (attackComponent != null) {
                     RangedAttack rangedAttack = (RangedAttack)Activator.CreateInstance(weaponTypes[currentWeaponIdx].Key, mainCharacter.gameObject, weaponTypes[currentWeaponIdx].Value);
                     rangedAttack.SetCurMode(1);
@@ -237,13 +238,13 @@ public class UpgradeWindow : MonoBehaviour
 
     protected void checkQuizResult(int correctAnsCount, int totalQuizCount)
     {
-        int percentage = (int)Math.Ceiling((double)(correctAnsCount / totalQuizCount) * 100.0f);
+        int percentage = (int)Math.Ceiling(((double)correctAnsCount / totalQuizCount) * 100.0f);
         if (percentage >= 80)
         {
 			MainSceneScript mainSceneScript = FindFirstObjectByType<MainSceneScript>();
 			if (mainSceneScript)
 			{
-                int amount = (int)Math.Ceiling((double)300 * percentage / 100);
+                int amount = (int)Math.Ceiling((double)(300 * percentage / 100));
 				mainSceneScript.UpdateScore(amount);
 				txt_Score.text = mainSceneScript.curScore.ToString();
 			}

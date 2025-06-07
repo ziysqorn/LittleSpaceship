@@ -16,8 +16,9 @@ public class DatabaseManager : MonoBehaviour
 		if (instance == null)
 		{
 			instance = this;
+			QuizServices quizServices = GetComponent<QuizServices>();
 			combatDb = new CombatDatabase(prefData);
-			quizDb = new QuizDatabase();
+			quizDb = new QuizDatabase(quizServices);
 			DontDestroyOnLoad(gameObject);
 		}
 	}
