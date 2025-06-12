@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class QuizServices : MonoBehaviour
 {
-	private string endpoint = "";
+	private string endpoint = "http://localhost:5000/api/cyber";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

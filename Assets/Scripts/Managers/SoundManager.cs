@@ -18,12 +18,21 @@ public class SoundManager : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
+		else if (instance != this)
+		{
+			Destroy(gameObject); 
+		}
 	}
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
 		if (backgroundSource && backgroundMusic)
 		{
+			if (backgroundSource.isPlaying) {
+				backgroundSource.Stop();
+				backgroundSource.clip = null;
+				backgroundSource.loop = false;
+			}
 			backgroundSource.clip = backgroundMusic;
 			backgroundSource.loop = true;
 			backgroundSource.volume = 0.5f;
